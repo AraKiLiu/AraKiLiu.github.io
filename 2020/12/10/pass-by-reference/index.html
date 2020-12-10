@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-th">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <title>參數的傳遞模式</title>
+
+    <link rel="canonical" href="/2020/12/10/pass-by-reference/">
+
+    <link rel="stylesheet" href="/css/timeline.css"/>
+
+    <link rel="stylesheet" href="/css/iDisqus.min.css"/>
+	
+    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    
+    <link rel="stylesheet" href="/css/zanshang.css">
+    
+    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    
+    
+
+    
+    
+    <script src="/js/jquery.min.js"></script>
+    
+    
+    <script src="/js/bootstrap.min.js"></script>
+    
+    
+    <script src="/js/hux-blog.min.js"></script>
+
+    
+    
+
+</head>
+
+
+
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">工程師的呢喃</a>
+        </div>
+
+        
+        
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+		            
+                        <li><a href="/top/about/">ABOUT</a></li>
+                    
+
+                    
+                        
+                        <li>
+                            <a href="/categories/life">life</a>
+                        </li>
+                        
+                        <li>
+                            <a href="/categories/python">python</a>
+                        </li>
+                        
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+</nav>
+<script>
+    
+    
+    
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        
+            $navbar.className = " ";
+            
+            setTimeout(function(){
+                
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>參數的傳遞模式</h1>
+                    <h2 class="subheading">python中參數的傳遞模式</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Thursday, December 10, 2020
+                        
+                        
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="傳值pass-by-value-傳址pass-by-reference">傳值(pass by value), 傳址(pass by reference)</h2>
+<h3 id="variable-跟-value-談起">variable 跟 value 談起</h3>
+<p>variable 與其 儲存(參考)的 value (object) 是兩個完全不同的東西:</p>
+<blockquote>
+<p>variable 是一個抽象的概念，value 是一個實際存在的資料</p>
+<p>variable 不是其對應的 value，vairable 儲存(參考)其對應的 value</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 5
+</code></pre></div><p>x 是 variable，他參考到5的個數字，但是 x 並不是等於 5，可以把它想成，講到美國總統，就會想到拜登，這只是一個互相的指涉關係。</p>
+<p>簡單的說，就是有沒有複製或產生的動作</p>
+<ul>
+<li>
+<p>Pass by value: 會在不同的位址產生或複製一個新的</p>
+</li>
+<li>
+<p>Pass by reference: 將自己的位址指向過去</p>
+</li>
+</ul>
+<p>在Python中所有的東西都是物件(Object)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; x = 5
+&gt;&gt;&gt; dir(x)
+[<span style="color:#a31515">&#39;__abs__&#39;</span>, <span style="color:#a31515">&#39;__add__&#39;</span>, <span style="color:#a31515">&#39;__and__&#39;</span>, <span style="color:#a31515">&#39;__bool__&#39;</span>, <span style="color:#a31515">&#39;__ceil__&#39;</span>, <span style="color:#a31515">&#39;__class__&#39;</span>, <span style="color:#a31515">&#39;__delattr__&#39;</span>, <span style="color:#a31515">&#39;__dir__&#39;</span>, <span style="color:#a31515">&#39;__divmod__&#39;</span>, <span style="color:#a31515">&#39;__doc__&#39;</span>, <span style="color:#a31515">&#39;__eq__&#39;</span>, <span style="color:#a31515">&#39;__float__&#39;</span>, <span style="color:#a31515">&#39;__floor__&#39;</span>, <span style="color:#a31515">&#39;__floordiv__&#39;</span>, <span style="color:#a31515">&#39;__format__&#39;</span>, <span style="color:#a31515">&#39;__ge__&#39;</span>, <span style="color:#a31515">&#39;__getattribute__&#39;</span>, <span style="color:#a31515">&#39;__getnewargs__&#39;</span>, <span style="color:#a31515">&#39;__gt__&#39;</span>, <span style="color:#a31515">&#39;__hash__&#39;</span>, <span style="color:#a31515">&#39;__index__&#39;</span>, <span style="color:#a31515">&#39;__init__&#39;</span>, <span style="color:#a31515">&#39;__init_subclass__&#39;</span>, <span style="color:#a31515">&#39;__int__&#39;</span>, <span style="color:#a31515">&#39;__invert__&#39;</span>, <span style="color:#a31515">&#39;__le__&#39;</span>, <span style="color:#a31515">&#39;__lshift__&#39;</span>, <span style="color:#a31515">&#39;__lt__&#39;</span>, <span style="color:#a31515">&#39;__mod__&#39;</span>, <span style="color:#a31515">&#39;__mul__&#39;</span>, <span style="color:#a31515">&#39;__ne__&#39;</span>, <span style="color:#a31515">&#39;__neg__&#39;</span>, <span style="color:#a31515">&#39;__new__&#39;</span>, <span style="color:#a31515">&#39;__or__&#39;</span>, <span style="color:#a31515">&#39;__pos__&#39;</span>, <span style="color:#a31515">&#39;__pow__&#39;</span>, <span style="color:#a31515">&#39;__radd__&#39;</span>, <span style="color:#a31515">&#39;__rand__&#39;</span>, <span style="color:#a31515">&#39;__rdivmod__&#39;</span>, <span style="color:#a31515">&#39;__reduce__&#39;</span>, <span style="color:#a31515">&#39;__reduce_ex__&#39;</span>, <span style="color:#a31515">&#39;__repr__&#39;</span>, <span style="color:#a31515">&#39;__rfloordiv__&#39;</span>, <span style="color:#a31515">&#39;__rlshift__&#39;</span>, <span style="color:#a31515">&#39;__rmod__&#39;</span>, <span style="color:#a31515">&#39;__rmul__&#39;</span>, <span style="color:#a31515">&#39;__ror__&#39;</span>, <span style="color:#a31515">&#39;__round__&#39;</span>, <span style="color:#a31515">&#39;__rpow__&#39;</span>, <span style="color:#a31515">&#39;__rrshift__&#39;</span>, <span style="color:#a31515">&#39;__rshift__&#39;</span>, <span style="color:#a31515">&#39;__rsub__&#39;</span>, <span style="color:#a31515">&#39;__rtruediv__&#39;</span>, <span style="color:#a31515">&#39;__rxor__&#39;</span>, <span style="color:#a31515">&#39;__setattr__&#39;</span>, <span style="color:#a31515">&#39;__sizeof__&#39;</span>, <span style="color:#a31515">&#39;__str__&#39;</span>, <span style="color:#a31515">&#39;__sub__&#39;</span>, <span style="color:#a31515">&#39;__subclasshook__&#39;</span>, <span style="color:#a31515">&#39;__truediv__&#39;</span>, <span style="color:#a31515">&#39;__trunc__&#39;</span>, <span style="color:#a31515">&#39;__xor__&#39;</span>, <span style="color:#a31515">&#39;as_integer_ratio&#39;</span>, <span style="color:#a31515">&#39;bit_length&#39;</span>, <span style="color:#a31515">&#39;conjugate&#39;</span>, <span style="color:#a31515">&#39;denominator&#39;</span>, <span style="color:#a31515">&#39;from_bytes&#39;</span>, <span style="color:#a31515">&#39;imag&#39;</span>, <span style="color:#a31515">&#39;numerator&#39;</span>, <span style="color:#a31515">&#39;real&#39;</span>, <span style="color:#a31515">&#39;to_bytes&#39;</span>]
+&gt;&gt;&gt; y = <span style="color:#a31515">&#39;larry&#39;</span>
+&gt;&gt;&gt; dir(y)
+[<span style="color:#a31515">&#39;__add__&#39;</span>, <span style="color:#a31515">&#39;__class__&#39;</span>, <span style="color:#a31515">&#39;__contains__&#39;</span>, <span style="color:#a31515">&#39;__delattr__&#39;</span>, <span style="color:#a31515">&#39;__dir__&#39;</span>, <span style="color:#a31515">&#39;__doc__&#39;</span>, <span style="color:#a31515">&#39;__eq__&#39;</span>, <span style="color:#a31515">&#39;__format__&#39;</span>, <span style="color:#a31515">&#39;__ge__&#39;</span>, <span style="color:#a31515">&#39;__getattribute__&#39;</span>, <span style="color:#a31515">&#39;__getitem__&#39;</span>, <span style="color:#a31515">&#39;__getnewargs__&#39;</span>, <span style="color:#a31515">&#39;__gt__&#39;</span>, <span style="color:#a31515">&#39;__hash__&#39;</span>, <span style="color:#a31515">&#39;__init__&#39;</span>, <span style="color:#a31515">&#39;__init_subclass__&#39;</span>, <span style="color:#a31515">&#39;__iter__&#39;</span>, <span style="color:#a31515">&#39;__le__&#39;</span>, <span style="color:#a31515">&#39;__len__&#39;</span>, <span style="color:#a31515">&#39;__lt__&#39;</span>, <span style="color:#a31515">&#39;__mod__&#39;</span>, <span style="color:#a31515">&#39;__mul__&#39;</span>, <span style="color:#a31515">&#39;__ne__&#39;</span>, <span style="color:#a31515">&#39;__new__&#39;</span>, <span style="color:#a31515">&#39;__reduce__&#39;</span>, <span style="color:#a31515">&#39;__reduce_ex__&#39;</span>, <span style="color:#a31515">&#39;__repr__&#39;</span>, <span style="color:#a31515">&#39;__rmod__&#39;</span>, <span style="color:#a31515">&#39;__rmul__&#39;</span>, <span style="color:#a31515">&#39;__setattr__&#39;</span>, <span style="color:#a31515">&#39;__sizeof__&#39;</span>, <span style="color:#a31515">&#39;__str__&#39;</span>, <span style="color:#a31515">&#39;__subclasshook__&#39;</span>, <span style="color:#a31515">&#39;capitalize&#39;</span>, <span style="color:#a31515">&#39;casefold&#39;</span>, <span style="color:#a31515">&#39;center&#39;</span>, <span style="color:#a31515">&#39;count&#39;</span>, <span style="color:#a31515">&#39;encode&#39;</span>, <span style="color:#a31515">&#39;endswith&#39;</span>, <span style="color:#a31515">&#39;expandtabs&#39;</span>, <span style="color:#a31515">&#39;find&#39;</span>, <span style="color:#a31515">&#39;format&#39;</span>, <span style="color:#a31515">&#39;format_map&#39;</span>, <span style="color:#a31515">&#39;index&#39;</span>, <span style="color:#a31515">&#39;isalnum&#39;</span>, <span style="color:#a31515">&#39;isalpha&#39;</span>, <span style="color:#a31515">&#39;isascii&#39;</span>, <span style="color:#a31515">&#39;isdecimal&#39;</span>, <span style="color:#a31515">&#39;isdigit&#39;</span>, <span style="color:#a31515">&#39;isidentifier&#39;</span>, <span style="color:#a31515">&#39;islower&#39;</span>, <span style="color:#a31515">&#39;isnumeric&#39;</span>, <span style="color:#a31515">&#39;isprintable&#39;</span>, <span style="color:#a31515">&#39;isspace&#39;</span>, <span style="color:#a31515">&#39;istitle&#39;</span>, <span style="color:#a31515">&#39;isupper&#39;</span>, <span style="color:#a31515">&#39;join&#39;</span>, <span style="color:#a31515">&#39;ljust&#39;</span>, <span style="color:#a31515">&#39;lower&#39;</span>, <span style="color:#a31515">&#39;lstrip&#39;</span>, <span style="color:#a31515">&#39;maketrans&#39;</span>, <span style="color:#a31515">&#39;partition&#39;</span>, <span style="color:#a31515">&#39;removeprefix&#39;</span>, <span style="color:#a31515">&#39;removesuffix&#39;</span>, <span style="color:#a31515">&#39;replace&#39;</span>, <span style="color:#a31515">&#39;rfind&#39;</span>, <span style="color:#a31515">&#39;rindex&#39;</span>, <span style="color:#a31515">&#39;rjust&#39;</span>, <span style="color:#a31515">&#39;rpartition&#39;</span>, <span style="color:#a31515">&#39;rsplit&#39;</span>, <span style="color:#a31515">&#39;rstrip&#39;</span>, <span style="color:#a31515">&#39;split&#39;</span>, <span style="color:#a31515">&#39;splitlines&#39;</span>, <span style="color:#a31515">&#39;startswith&#39;</span>, <span style="color:#a31515">&#39;strip&#39;</span>, <span style="color:#a31515">&#39;swapcase&#39;</span>, <span style="color:#a31515">&#39;title&#39;</span>, <span style="color:#a31515">&#39;translate&#39;</span>, <span style="color:#a31515">&#39;upper&#39;</span>, <span style="color:#a31515">&#39;zfill&#39;</span>]
+</code></pre></div><p>Python 中則是 <strong>pass by object reference</strong> or <strong>pass by sharing</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> f(y):
+	y.append(1)
+x = [0]
+f(x)
+<span style="color:#00f">print</span>(x) <span style="color:#008000"># [0,1]</span>
+</code></pre></div><p>x, y 所指向的是同一個物件，所以用物件所定義的方法去修改位址物件，會造成兩邊看到的東西都會被修改。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> f1(y):
+	y += 1
+x = 4
+f(x)
+<span style="color:#00f">print</span>(x) <span style="color:#008000"># 4</span>
+</code></pre></div><p>這會變成 dynamic binding。</p>
+<p>dynamic binding ： binding在執行時中會完成或者允許在執行時中改變。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&gt;&gt;&gt; a = 5
+&gt;&gt;&gt; id(a)
+140035495798656
+&gt;&gt;&gt; a = 6
+&gt;&gt;&gt; id(a)
+140035495798688
+&gt;&gt;&gt; id(5)
+140035495798656
+&gt;&gt;&gt; id(6)
+140035495798688
+</code></pre></div><p><strong>有用到  =  就會重新賦值</strong></p>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/11/29/hello-world/" data-toggle="tooltip" data-placement="top" title="Welcome to ArakiLiu Blog">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
+            </div>
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<footer>
+    <div class="container">
+        <div class="row">
+                <ul class="list-inline text-center">
+                   
+                    
+                    <li>
+                        <a href="mailto:hamster518@gmail.com">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+
+                    
+
+		    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/AraKiLiu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+		    
+                    
+                    
+                    
+                    
+                    
+            
+            
+            
+                </ul>
+		<p class="copyright text-muted">
+                    Copyright &copy; 工程師的呢喃 2020
+                </p>
+        </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+
+
+
+
+
+<script>
+    
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+
+<script>
+    async("https://cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-184097779-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
