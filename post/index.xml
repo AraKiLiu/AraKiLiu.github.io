@@ -13,7 +13,7 @@
       <pubDate>Thu, 10 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://arakiliu.github.io/2020/12/10/pass-by-reference/</guid>
-      <description>傳值(pass by value), 傳址(pass by reference) variable 跟 value 談起 variable 與其 儲存(參考)的 value (object) 是兩個完全不同的東西: variable 是一個抽象的概念，value 是一個實際存在的資</description>
+      <description>variable 跟 value 談起 variable 與其 儲存(參考)的 value (object) 是兩個完全不同的東西: variable 是一個抽象的概念，value 是一個實際存在的資料 variable 不是其對應的 value，vair</description>
     </item>
     
     <item>
