@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-th">
 <head>
-	<meta name="generator" content="Hugo 0.79.0" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
 
-    <title>工程師的呢喃</title>
+    <title>Namespace</title>
 
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/2020/12/11/Namespace/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -122,14 +121,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>Namespace</h1>
+                    <h2 class="subheading">命名空間Namespace</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Friday, December 11, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -138,199 +160,112 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
 
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/11/Namespace/">
-        <h2 class="post-title">
-            Namespace
-        </h2>
-	
-        <h3 class="post-subtitle">
-            命名空間Namespace
-        </h3>
-	
-        <div class="post-content-preview">
-	
-            命名空間Namespace
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Friday, December 11, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/10/pass-by-reference/">
-        <h2 class="post-title">
-            參數的傳遞模式
-        </h2>
-	
-        <h3 class="post-subtitle">
-            python中參數的傳遞模式
-        </h3>
-	
-        <div class="post-content-preview">
-	
-            python中參數的傳遞模式
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 10, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/11/29/hello-world/">
-        <h2 class="post-title">
-            Welcome to ArakiLiu Blog
-        </h2>
-	
-        <h3 class="post-subtitle">
-            The ArakiLiu Blog
-        </h3>
-	
-        <div class="post-content-preview">
-	
-            The ArakiLiu Blog
-        
-        </div>
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Sunday, November 29, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
+<article>
+    <div class="container">
+        <div class="row">
 
             
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
-    
+                <p>Python中的命名空間是一個字典 (dictionary） ，它的key就是變數名稱，它的值就是那些變數的值。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 2
+<span style="color:#00f">def</span> g():
+ x = 4
+</code></pre></div><p>Python中有很多命名空間：</p>
+<ol>
+<li>
+<p>Built-in Namespace: 當直譯器啟動後就會產生，任何模塊都可以訪問他，存放著基本的函數，例如:print。</p>
+</li>
+<li>
+<p>Global Namespace: 全域命名空間，命名空間記錄了模塊中的變量</p>
+<p>在上方例子模塊中就記錄了</p>
+<p>{ &lsquo;x&rsquo;:2, &lsquo;g&rsquo;: function object }</p>
+</li>
+<li>
+<p>Function Namespace: 區域命名空間，紀錄了函數的變量。</p>
+<p>在上方例子函式中就記錄了</p>
+<p>{ &lsquo;x&rsquo;:4 }</p>
+</li>
+</ol>
+<p>
+  <img src="https://cdn.programiz.com/sites/tutorial2program/files/nested-namespaces-python.jpg" alt="">
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+</p>
+<p>Python LEGB:</p>
+<ul>
+<li>L: local</li>
+<li>E: enclosed</li>
+<li>G: global</li>
+<li>B: built-in</li>
+</ul>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/10/pass-by-reference/" data-toggle="tooltip" data-placement="top" title="參數的傳遞模式">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
