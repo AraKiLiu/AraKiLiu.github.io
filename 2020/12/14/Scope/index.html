@@ -7,9 +7,9 @@
 
     
 
-    <title>Python</title>
+    <title>Scope</title>
 
-    <link rel="canonical" href="/categories/python/">
+    <link rel="canonical" href="/2020/12/14/Scope/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -121,14 +121,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>Scope</h1>
+                    <h2 class="subheading">範圍Spoce</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Monday, December 14, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -137,184 +160,121 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
 
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/14/Scope/">
-        <h2 class="post-title">
-            Scope
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 14, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/11/Namespace/">
-        <h2 class="post-title">
-            Namespace
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Friday, December 11, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/10/pass-by-reference/">
-        <h2 class="post-title">
-            參數的傳遞模式
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 10, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
+<article>
+    <div class="container">
+        <div class="row">
 
             
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
-    
+                <p>
+  <img src="https://cdn.askpython.com/wp-content/uploads/2019/08/python-variable-scope-resolution-legb.png.webp" alt="">
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+</p>
+<p>查找namespace的順序與權限</p>
+<p>查找順序 Local -&gt; Enclosed -&gt; Global -&gt; Built-in</p>
+<p>低層不能改變高層的值，只能讀取。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 1
+<span style="color:#00f">def</span> outer():
+	x = 10
+outer()
+<span style="color:#00f">print</span>(x) <span style="color:#008000"># 1	</span>
+</code></pre></div><p>因為Local沒有x所以會往Global找x。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 1
+<span style="color:#00f">def</span> outer():
+	<span style="color:#00f">print</span>(x) <span style="color:#008000"># 1</span>
+outer()
+<span style="color:#00f">print</span>(x) <span style="color:#008000"># 1	</span>
+</code></pre></div><p>但要真的改變就要加上global</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 1
+<span style="color:#00f">def</span> outer():
+	<span style="color:#00f">global</span> x
+	x = 10
+outer()
+<span style="color:#00f">print</span>(x) <span style="color:#008000"># 10</span>
+</code></pre></div><p>在enclosed中的要加上nonlocal</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> outer():
+	x = 1 <span style="color:#008000"># enclosed scope</span>
+  <span style="color:#00f">def</span> inner():
+    x = 10 <span style="color:#008000"># local scope</span>
+  <span style="color:#00f">print</span>(x) <span style="color:#008000"># 1</span>
+outer()
+
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> outer():
+	x = 1 <span style="color:#008000"># enclosed scope</span>
+  <span style="color:#00f">def</span> inner():
+    nonlocal x
+    x = 10 <span style="color:#008000"># local scope</span>
+  <span style="color:#00f">print</span>(x) <span style="color:#008000"># 10</span>
+outer()
+</code></pre></div>
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/11/Namespace/" data-toggle="tooltip" data-placement="top" title="Namespace">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
