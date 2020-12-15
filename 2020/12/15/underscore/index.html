@@ -7,9 +7,9 @@
 
     
 
-    <title>Python</title>
+    <title>底線的各種情況與涵意</title>
 
-    <link rel="canonical" href="/categories/python/">
+    <link rel="canonical" href="/2020/12/15/underscore/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -121,14 +121,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>底線的各種情況與涵意</h1>
+                    <h2 class="subheading">底線的各種情況與涵意</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Tuesday, December 15, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -137,204 +160,112 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
 
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/15/underscore/">
-        <h2 class="post-title">
-            底線的各種情況與涵意
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Tuesday, December 15, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/14/Scope/">
-        <h2 class="post-title">
-            Scope
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 14, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/11/Namespace/">
-        <h2 class="post-title">
-            Namespace
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Friday, December 11, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/10/pass-by-reference/">
-        <h2 class="post-title">
-            參數的傳遞模式
-        </h2>
-        
-            <h3 class="post-content-preview">  
-              Python
-            </h3>
-        
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 10, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
+<article>
+    <div class="container">
+        <div class="row">
 
             
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
-    
+                <ol>
+<li>
+<p>只有一個 底線：程式中不重要的變數，這可以讓以後別人或自己在觀看程式碼時，馬上知道這變數不重要。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">for</span> _ <span style="color:#00f">in</span> range(10):
+ <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;Hi&#39;</span>)
+     
+name, _ = <span style="color:#a31515">&#39;name$age&#39;</span>.split(<span style="color:#a31515">&#39;$&#39;</span>)
+</code></pre></div></li>
+<li>
+<p>名稱前有一個底線 ：要是希望變數或是方法為私人的，就會在前面加一個底線。</p>
+<p>在class中沒有強制作用，但是在import中定義為private的會無法載入。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Qwe</span>:
+  _private_var = 0
+  <span style="color:#00f">def</span> public_function(self):
+    <span style="color:#00f">print</span>(public_function)
+  <span style="color:#00f">def</span> _private_function(self):
+    <span style="color:#00f">print</span>(private_function)
+</code></pre></div></li>
+<li>
+<p>名稱後有一個底線：只是要避開已經使用過的變數名稱與不能使用的python關鍵字。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="">＃想要把整個</span>class傳入
+<span style="color:#00f">def</span> f(class_):
+  prinit(class_)
+</code></pre></div></li>
+<li>
+<p>名稱前有兩個底線 ：物件被賦予其屬性後，其值不可延續，且必須尊崇class 所給的屬性。封裝則是把方法鎖在class裡無法被更改。主要代表著其物件具有私有性(private)。定義的值基本上無法被修改。<strong>具有唯一性，無法被修改</strong>。</p>
+</li>
+<li>
+<p>名稱前後有兩個底線 ：pytohn中定義的控制變數 (dunder methods / magic methods)</p>
+</li>
+</ol>
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/14/Scope/" data-toggle="tooltip" data-placement="top" title="Scope">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
