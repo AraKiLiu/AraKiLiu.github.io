@@ -6,7 +6,16 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Tue, 15 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>雙底線方法</title>
+      <link>https://arakiliu.github.io/2020/12/16/dunder_methods/</link>
+      <pubDate>Wed, 16 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/16/dunder_methods/</guid>
+      <description>new 與 init class Product: # __new__ 是一个 static method, args 是傳入的参数，為tuple, kwargs為dict def __new__(cls, *args, **kwargs): print(&amp;#39;new method&amp;#39;, args, kwargs) return object.__new__(MyClass) def __init__(self, name, price): self.name = name self.price = price print(&amp;#39;init method&amp;#39;) # 创建一個MyCla</description>
+    </item>
+    
     <item>
       <title>底線的各種情況與涵義</title>
       <link>https://arakiliu.github.io/2020/12/15/underscore/</link>

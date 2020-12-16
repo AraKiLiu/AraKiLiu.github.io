@@ -7,9 +7,9 @@
 
     
 
-    <title>底線的各種情況與涵義</title>
+    <title>雙底線方法</title>
 
-    <link rel="canonical" href="/2020/12/15/underscore/">
+    <link rel="canonical" href="/2020/12/16/dunder_methods/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -139,15 +139,15 @@
                         </a>
                         
                     </div>
-                    <h1>底線的各種情況與涵義</h1>
-                    <h2 class="subheading">底線的各種情況與涵義</h2>
+                    <h1>雙底線方法</h1>
+                    <h2 class="subheading">雙底線方法</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Tuesday, December 15, 2020
+                        Wednesday, December 16, 2020
                         
                         
                         
@@ -172,37 +172,71 @@
                 post-container">
 
                 
-                <ol>
+                <h2 id="__new__-與-__init__"><strong>new</strong> 與 <strong>init</strong></h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Product</span>:
+    <span style="color:#008000"># __new__ 是一个 static method, args 是傳入的参数，為tuple, kwargs為dict</span>
+    <span style="color:#00f">def</span> __new__(cls, *args, **kwargs):
+        <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;new method&#39;</span>, args, kwargs)
+        <span style="color:#00f">return</span> object.__new__(MyClass)
+
+    <span style="color:#00f">def</span> __init__(self, name, price):
+        self.name = name
+        self.price = price
+        <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;init method&#39;</span>)
+
+
+<span style="color:#008000"># 创建一個MyClass的物件,會先調用__new__，在調用__init__進行初始化</span>
+p = Product(<span style="color:#a31515">&#34;珍珠奶茶&#34;</span>, <span style="color:#a31515">&#34;50&#34;</span>)
+<span style="color:#008000"># new method (&#39;珍珠奶茶&#39;, &#39;50&#39;) {}</span>
+<span style="color:#008000"># init method</span>
+</code></pre></div><h2 id="__repr__-與-__str__"><strong>repr</strong> 與 <strong>str</strong></h2>
+<p>美化輸出，如果同時實現這兩個方法，會只輸出str中的資訊</p>
+<ul>
 <li>
-<p>只有一個 底線：程式中不重要的變數，這可以讓以後別人或自己在觀看程式碼時，馬上知道這變數不重要。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">for</span> _ <span style="color:#00f">in</span> range(10):
- <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;Hi&#39;</span>)
-     
-name, _ = <span style="color:#a31515">&#39;name$age&#39;</span>.split(<span style="color:#a31515">&#39;$&#39;</span>)
-</code></pre></div></li>
-<li>
-<p>名稱前有一個底線 ：要是希望變數或是方法為私人的，就會在前面加一個底線。</p>
-<p>在class中沒有強制作用，但是在import中定義為private的會無法載入。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Qwe</span>:
-  _private_var = 0
-  <span style="color:#00f">def</span> public_function(self):
-    <span style="color:#00f">print</span>(public_function)
-  <span style="color:#00f">def</span> _private_function(self):
-    <span style="color:#00f">print</span>(private_function)
-</code></pre></div></li>
-<li>
-<p>名稱後有一個底線：只是要避開已經使用過的變數名稱與不能使用的python關鍵字。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="">＃想要把整個</span>class傳入
-<span style="color:#00f">def</span> f(class_):
-  prinit(class_)
-</code></pre></div></li>
-<li>
-<p>名稱前有兩個底線 ：物件被賦予其屬性後，其值不可延續，且必須尊崇class 所給的屬性。封裝則是把方法鎖在class裡無法被更改。主要代表著其物件具有私有性(private)。定義的值基本上無法被修改。<strong>具有唯一性，無法被修改</strong>。</p>
+<p>str：顯示可讀性高，有用資訊。</p>
 </li>
 <li>
-<p>名稱前後有兩個底線 ：pytohn中定義的控制變數 (dunder methods / magic methods)</p>
+<p>rear：顯示明確且詳盡的資訊</p>
+<p>有時為了debug會故意 <strong>print(rear(物件))</strong>，來了解物件實際上是什麼。</p>
 </li>
-</ol>
+</ul>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Product</span>:
+    <span style="color:#00f">def</span> __init__(self, name, price):
+        self.name = name
+        self.price = price
+        
+    <span style="color:#00f">def</span> __str__(self):
+      	<span style="color:#00f">return</span> f<span style="color:#a31515">&#39;{self.name} ${self.price}&#39;</span>
+    
+    <span style="color:#00f">def</span> __repr__(self):
+      	<span style="color:#00f">return</span> f<span style="color:#a31515">&#39;&lt; Product({self.name}, {self.price}) &gt;&#39;</span>
+      
+p = Product(<span style="color:#a31515">&#34;珍珠奶茶&#34;</span>, <span style="color:#a31515">&#34;50&#34;</span>)
+<span style="color:#00f">print</span>(p) <span style="color:#008000"># 珍珠奶茶 $50</span>
+<span style="color:#00f">print</span>(repr(p)) <span style="color:#008000"># &lt; Product(珍珠奶茶, 50) &gt;</span>
+</code></pre></div><h2 id="計算類型">計算類型</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> __add_(self, other):
+	<span style="color:#00f">if</span> isinstance(other, str):
+		self.name += other
+	
+<span style="color:#00f">print</span>(p + <span style="color:#a31515">&#39;白玉&#39;</span>) <span style="color:#008000"># 珍珠奶茶白玉 $50</span>
+</code></pre></div><ul>
+<li>object.<strong>add</strong>(self, other) 對應 +</li>
+<li>object.<strong>sub</strong>(self, other) 對應 -</li>
+<li>object.<strong>mul</strong>(self, other) 對應 *</li>
+<li>object.<strong>matmul</strong>(self, other) 對應 @</li>
+<li>object.<strong>truediv</strong>(self, other) 對應 /</li>
+<li>object.<strong>floordiv</strong>(self, other) 對應 //</li>
+<li>object.<strong>mod</strong>(self, other) 對應 %</li>
+<li>object.<strong>divmod</strong>(self, other) 對應 divmod()</li>
+<li>object.<strong>pow</strong>(self, other[, modulo]) 對應 pow()</li>
+<li>object.<strong>lshift</strong>(self, other) 對應  &laquo;</li>
+<li>object.<strong>rshift</strong>(self, other) 對應  &raquo;
+object.and(self, other) 對應  &amp;</li>
+<li>object.<strong>xor</strong>(self, other) 對應  ^</li>
+<li>object.<strong>or</strong>(self, other) 對應  |</li>
+</ul>
+<p><a href="https://docs.python.org/3/reference/datamodel.html">參考資料 Data model</a></p>
 
 
                 
@@ -211,15 +245,10 @@ name, _ = <span style="color:#a31515">&#39;name$age&#39;</span>.split(<span styl
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/14/Scope/" data-toggle="tooltip" data-placement="top" title="Scope">&larr;
+                        <a href="/2020/12/15/underscore/" data-toggle="tooltip" data-placement="top" title="底線的各種情況與涵義">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/16/dunder_methods/" data-toggle="tooltip" data-placement="top" title="雙底線方法">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
