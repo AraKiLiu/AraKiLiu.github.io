@@ -6,7 +6,16 @@
     <description>Recent content on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Wed, 16 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 17 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>繼承</title>
+      <link>https://arakiliu.github.io/2020/12/17/inheritance/</link>
+      <pubDate>Thu, 17 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/17/inheritance/</guid>
+      <description>繼承 (Inheritance) 繼承(Inheritance)：父類別跟子類別的階層關係，子類別會有父類別的屬性與方法。 在程式中將各類別共用屬性與方法方在一個獨立類別</description>
+    </item>
+    
     <item>
       <title>雙底線方法</title>
       <link>https://arakiliu.github.io/2020/12/16/dunder_methods/</link>
