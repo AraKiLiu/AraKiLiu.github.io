@@ -7,9 +7,9 @@
 
     
 
-    <title>繼承(1)</title>
+    <title>繼承(2)</title>
 
-    <link rel="canonical" href="/2020/12/17/inheritance/">
+    <link rel="canonical" href="/2020/12/21/inheritance/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -137,7 +137,7 @@
                         </a>
                         
                     </div>
-                    <h1>繼承(1)</h1>
+                    <h1>繼承(2)</h1>
                     <h2 class="subheading">繼承</h2>
                     <span class="meta">
                         Posted by 
@@ -145,7 +145,7 @@
                             劉啟仲
                          
                         on 
-                        Thursday, December 17, 2020
+                        Monday, December 21, 2020
                         
                         
                         
@@ -170,9 +170,7 @@
                 post-container">
 
                 
-                <h2 id="繼承-inheritance">繼承 (Inheritance)</h2>
-<p>繼承(Inheritance)：父類別跟子類別的階層關係，子類別會有父類別的屬性與方法。</p>
-<p>在程式中將各類別共用屬性與方法方在一個獨立類別中，讓其他類別透過繼承方式來擁有這些屬性與方法，<strong>降低程式碼重複性</strong>。</p>
+                <h4 id="python中所有東西都是物件每個物件都有他自己的型別type">python中，所有東西都是物件，每個物件都有他自己的型別(type)。</h4>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
 <span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
     <span style="color:#00f">def</span> __init__(self):
@@ -193,60 +191,27 @@
 toyota = Car()
 toyota.drive() <span style="color:#008000"># drive method is called.</span>
 <span style="color:#00f">print</span>(toyota.exterior) <span style="color:#008000"># white</span>
-</code></pre></div><h2 id="override">Override</h2>
-<p>子類別中定義了與父類別同樣名稱的方法，這時子類別在呼叫方法時，就會將其實作內容覆蓋掉父類別的方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;white&#34;</span>
-    <span style="color:#00f">def</span> drive(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;drive method is called.&#34;</span>)
- 
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(Transportation):
-    <span style="color:#00f">def</span> move(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;move is method called.&#34;</span>)
-        
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Airplane</span>(Transportation):
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;Red&#34;</span>
-    <span style="color:#00f">def</span> fly(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;fly method is called.&#34;</span>)
-        
-evaair = Airplane()
-evaair.drive() <span style="color:#008000"># drive method is called.</span>
-<span style="color:#00f">print</span>(evaair.exterior) <span style="color:#008000"># Red</span>
-</code></pre></div><h2 id="super">Super</h2>
-<p>如果想要在子類別中執行父類別方法，可以使用super( )。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;white&#34;</span>
-    <span style="color:#00f">def</span> drive(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;drive method is called.&#34;</span>)
- 
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(Transportation):
-    <span style="color:#00f">def</span> drive(self):
-      	super().drive
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;child class drive method is called.&#34;</span>)
-    <span style="color:#00f">def</span> move(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;move is method called.&#34;</span>)
-        
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Airplane</span>(Transportation):
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;Red&#34;</span>
-    <span style="color:#00f">def</span> fly(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;fly method is called.&#34;</span>)
-        
-toyota = Car()
-toyota.drive() 
-<span style="color:#008000"># drive method is called.</span>
-<span style="color:#008000"># child class drive method is called.</span>
-<span style="color:#00f">print</span>(toyota.exterior) <span style="color:#008000"># white</span>
-</code></pre></div>
+</code></pre></div><p>isinstance( )與type( )區別：</p>
+<p>type( )不會認為子類是一種父類類型，不考慮繼承關係。</p>
+<p>isinstance( )會認為子類是一種父類類型，考慮繼承關係。</p>
+<p>如果要判斷兩個類型是否相同推薦使用isinstance( )。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">print</span>(isinstance(toyota, Car)) <span style="color:#008000"># True</span>
+<span style="color:#00f">print</span>(isinstance(toyota, Transportation)) <span style="color:#008000"># True</span>
+<span style="color:#00f">print</span>(type(toyota)) <span style="color:#008000"># &lt;class &#39;__main__.toyota&#39;&gt;</span>
+<span style="color:#00f">print</span>(type(Car)) <span style="color:#008000"># &lt;class &#39;type&#39;&gt;</span>
+</code></pre></div><p>class是type的實例，type 可以創造出 class 的實例，也就是說 type 本身的型別就是type。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># class SportsCar(Transportation)</span>
+<span style="color:#008000"># 	pass</span>
+SportsCar = type( <span style="color:#a31515">&#39;SportsCar&#39;</span>, (Transportation,), {})
+car = SportsCar()
+<span style="color:#00f">print</span>(type(car)) <span style="color:#008000"># &lt;class &#39;__main__.SportsCar&#39;&gt;</span>
+</code></pre></div><p>type是object的實例</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">print</span>(isinstance(Car, type)) <span style="color:#008000"># True</span>
+<span style="color:#00f">print</span>(isinstance(type, object)) <span style="color:#008000"># True</span>
+<span style="color:#00f">print</span>(isinstance(Car, object)) <span style="color:#008000"># True</span>
+</code></pre></div><p><strong>object( ) -&gt; type( ) -&gt; class( ) - &gt;toyota( )</strong></p>
+<p><a href="https://dboyliao.medium.com/%E6%B7%BA%E8%AB%87-python-metaclass-dfacf24d6dd5">參考：淺談 Python Metaclass</a></p>
+
 
                 
 
@@ -254,15 +219,10 @@ toyota.drive()
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/16/dunder_methods/" data-toggle="tooltip" data-placement="top" title="雙底線方法">&larr;
+                        <a href="/2020/12/17/inheritance/" data-toggle="tooltip" data-placement="top" title="繼承(1)">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/21/inheritance/" data-toggle="tooltip" data-placement="top" title="繼承(2)">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
