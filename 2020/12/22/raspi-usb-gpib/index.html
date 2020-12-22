@@ -7,9 +7,9 @@
 
     
 
-    <title>繼承(1)</title>
+    <title>Using NI USB-GPIB in Raspberry Pi</title>
 
-    <link rel="canonical" href="/2020/12/17/inheritance/">
+    <link rel="canonical" href="/2020/12/22/raspi-usb-gpib/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -136,20 +136,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/python" title="Python">
-                            Python
+                        <a class="tag" href="/tags/iot" title="IOT">
+                            IOT
                         </a>
                         
                     </div>
-                    <h1>繼承(1)</h1>
-                    <h2 class="subheading">繼承</h2>
+                    <h1>Using NI USB-GPIB in Raspberry Pi</h1>
+                    <h2 class="subheading">RasPi using GPIB</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Thursday, December 17, 2020
+                        Tuesday, December 22, 2020
                         
                         
                         
@@ -174,83 +174,144 @@
                 post-container">
 
                 
-                <h2 id="繼承-inheritance">繼承 (Inheritance)</h2>
-<p>繼承(Inheritance)：父類別跟子類別的階層關係，子類別會有父類別的屬性與方法。</p>
-<p>在程式中將各類別共用屬性與方法方在一個獨立類別中，讓其他類別透過繼承方式來擁有這些屬性與方法，<strong>降低程式碼重複性</strong>。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;white&#34;</span>
-    <span style="color:#00f">def</span> drive(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;drive method is called.&#34;</span>)
- 
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(Transportation):
-    <span style="color:#00f">def</span> move(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;move is method called.&#34;</span>)
-        
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Airplane</span>(Transportation):
-    <span style="color:#00f">def</span> fly(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;fly method is called.&#34;</span>)
-        
-toyota = Car()
-toyota.drive() <span style="color:#008000"># drive method is called.</span>
-<span style="color:#00f">print</span>(toyota.exterior) <span style="color:#008000"># white</span>
-</code></pre></div><h2 id="override">Override</h2>
-<p>子類別中定義了與父類別同樣名稱的方法，這時子類別在呼叫方法時，就會將其實作內容覆蓋掉父類別的方法</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;white&#34;</span>
-    <span style="color:#00f">def</span> drive(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;drive method is called.&#34;</span>)
- 
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(Transportation):
-    <span style="color:#00f">def</span> move(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;move is method called.&#34;</span>)
-        
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Airplane</span>(Transportation):
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;Red&#34;</span>
-    <span style="color:#00f">def</span> fly(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;fly method is called.&#34;</span>)
-        
-evaair = Airplane()
-evaair.drive() <span style="color:#008000"># drive method is called.</span>
-<span style="color:#00f">print</span>(evaair.exterior) <span style="color:#008000"># Red</span>
-</code></pre></div><h2 id="super">Super</h2>
-<p>如果想要在子類別中執行父類別方法，可以使用super( )。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#008000"># parent class / base class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Transportation</span>:
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;white&#34;</span>
-    <span style="color:#00f">def</span> drive(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;drive method is called.&#34;</span>)
- 
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(Transportation):
-    <span style="color:#00f">def</span> drive(self):
-      	super().drive
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;child class drive method is called.&#34;</span>)
-    <span style="color:#00f">def</span> move(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;move is method called.&#34;</span>)
-        
-<span style="color:#008000"># child class / deroved class</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Airplane</span>(Transportation):
-    <span style="color:#00f">def</span> __init__(self):
-        self.exterior = <span style="color:#a31515">&#34;Red&#34;</span>
-    <span style="color:#00f">def</span> fly(self):
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#34;fly method is called.&#34;</span>)
-        
-toyota = Car()
-toyota.drive() 
-<span style="color:#008000"># drive method is called.</span>
-<span style="color:#008000"># child class drive method is called.</span>
-<span style="color:#00f">print</span>(toyota.exterior) <span style="color:#008000"># white</span>
-</code></pre></div>
+                <h2 id="更新系統">更新系統</h2>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre><h2 id="安裝rpi-source">安裝rpi-source</h2>
+<pre><code>$ sudo apt-get install -y git bc bison flex libssl-dev libncurses5-dev
+</code></pre><p>
+  <img src="https://i.imgur.com/mG1LaBw.png" alt="">
+
+</p>
+<pre><code>$ sudo apt install raspberrypi-kernel-headers
+</code></pre><p>
+  <img src="https://i.imgur.com/iIcMhBQ.png" alt="">
+
+</p>
+<pre><code>$ sudo wget https://raw.githubusercontent.com/notro/rpi-source/master/rpi-source -O /usr/bin/rpi-source &amp;&amp; sudo chmod +x /usr/bin/rpi-source &amp;&amp; /usr/bin/rpi-source -q --tag-update
+</code></pre><p>
+  <img src="https://i.imgur.com/RFbivSJ.png" alt="">
+
+</p>
+<pre><code>$ sudo rpi-source
+</code></pre><p>
+  <img src="https://i.imgur.com/I5kUU8k.png" alt="">
+
+</p>
+<h2 id="安裝linux-gpib">安裝Linux-gpib</h2>
+<pre><code>$ sudo apt-get install -y tk-dev build-essential texinfo texi2html libcwidget-dev libncurses5-dev libx11-dev binutils-dev bison flex libusb-1.0-0 libusb-dev libmpfr-dev libexpat1-dev tofrodos subversion autoconf automake libtool
+</code></pre><p>
+  <img src="https://i.imgur.com/ULB0qCF.png" alt="">
+
+</p>
+<pre><code>$ sudo mkdir linux-gpib
+$ cd linux-gpib/
+$ sudo svn checkout svn://svn.code.sf.net/p/linux-gpib/code/trunk linux-gpib-code
+</code></pre><p>
+  <img src="https://i.imgur.com/BGx2phX.png" alt="">
+
+</p>
+<p>下圖為目錄結構，有兩個資料夾linux-gpib-kernel與linux-gpib-user</p>
+<p>
+  <img src="https://i.imgur.com/PO0hqO9.png" alt="">
+
+</p>
+<pre><code>$ cd linux-gpib-kernel
+$ sudo make
+</code></pre><p>
+  <img src="https://i.imgur.com/EKNCEqz.png" alt="">
+
+</p>
+<pre><code>$ sudo make install
+</code></pre><p>
+  <img src="https://i.imgur.com/BptsbLe.png" alt="">
+
+</p>
+<pre><code>$ cd /home/pi/linux-gpib/linux-gpib-code/linux-gpib-user
+$ sudo ./bootstrap
+</code></pre><p>
+  <img src="https://i.imgur.com/GmhSLsz.png" alt="">
+
+</p>
+<pre><code>$ sudo ./configure
+</code></pre><p>
+  <img src="https://i.imgur.com/GWVDSxx.png" alt="">
+
+</p>
+<pre><code>$ sudo make
+</code></pre><p>
+  <img src="https://i.imgur.com/IpIjFvv.png" alt="">
+
+</p>
+<pre><code>$ sudo make install
+</code></pre><p>
+  <img src="https://i.imgur.com/NEIIk5k.png" alt="">
+
+</p>
+<h2 id="gpib設定">GPIB設定</h2>
+<pre><code>$ sudo apt-get install -y vim
+</code></pre><p>
+  <img src="https://i.imgur.com/8uwNkb0.png" alt="">
+
+</p>
+<p>尋找gpib.conf</p>
+<pre><code>$ sudo find / -name gpib.conf
+</code></pre><p>
+  <img src="https://i.imgur.com/rNOA77C.png" alt="">
+
+</p>
+<p>根據尋找的gpib.conf位置去修改檔案</p>
+<pre><code>$ sudo vim /usr/local/etc/gpib.conf
+</code></pre><ol>
+<li>按I進入修改。</li>
+<li>將ni_pic改為ni_usb_b或raspi_gpib</li>
+<li>按下Esc</li>
+<li>鍵入:wq按下Enter退出Vim</li>
+</ol>
+<p>修改前：</p>
+<p>
+  <img src="https://i.imgur.com/GtbUo3l.png" alt="">
+
+</p>
+<p>修改後：</p>
+<p>
+  <img src="https://i.imgur.com/g8VqMxD.png" alt="">
+
+</p>
+<pre><code>$ sudo modprobe ni_usb_gpib
+$ sudo ldconfig
+$ sudo gpib_config
+$ lsmod
+</code></pre><p>
+  <img src="https://i.imgur.com/a2WsGQ0.png" alt="">
+
+</p>
+<h2 id="用python測試gpib">用Python測試GPIB</h2>
+<h3 id="testing-gpib-operation"><strong>Testing GPIB operation</strong></h3>
+<p>
+  <img src="https://i.imgur.com/ec7rKE4.png" alt="">
+
+</p>
+<h3 id="python-application-to-talk-gpib-from-raspberry-pi"><strong>Python-application to talk GPIB from Raspberry Pi</strong></h3>
+<p>
+  <img src="https://i.imgur.com/tsQhVqP.png" alt="">
+
+</p>
+<p>
+  <img src="https://i.imgur.com/o5B2xKO.png" alt="">
+
+</p>
+<p><strong>Python-application to talk VISA from Raspberry Pi</strong></p>
+<pre><code>$sudo pip3 install pyvisa pyvisa-py gpib-ctypes
+</code></pre><p>
+  <img src="https://i.imgur.com/hzpNU4B.png" alt="">
+
+</p>
+<p>
+  <img src="https://i.imgur.com/DXjnTnl.png" alt="">
+
+</p>
+
 
                 
 
@@ -258,15 +319,10 @@ toyota.drive()
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/16/dunder_methods/" data-toggle="tooltip" data-placement="top" title="雙底線方法">&larr;
+                        <a href="/2020/12/21/inheritance/" data-toggle="tooltip" data-placement="top" title="繼承(2)">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/21/inheritance/" data-toggle="tooltip" data-placement="top" title="繼承(2)">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

@@ -6,7 +6,16 @@
     <description>Recent content on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Mon, 21 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 22 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using NI USB-GPIB in Raspberry Pi</title>
+      <link>https://arakiliu.github.io/2020/12/22/raspi-usb-gpib/</link>
+      <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/22/raspi-usb-gpib/</guid>
+      <description>更新系統 $ sudo apt-get update $ sudo apt-get upgrade 安裝rpi-source $ sudo apt-get install -y git bc bison flex libssl-dev libncurses5-dev $ sudo apt install raspberrypi-kernel-headers $ sudo wget https://raw.githubusercontent.com/notro/rpi-source/master/rpi-source -O /usr/bin/rpi-source &amp;amp;&amp;amp; sudo chmod +x /usr/bin/rpi-source &amp;amp;&amp;amp; /usr/bin/rpi-source -q --tag-update $ sudo rpi-source 安裝Linux-gpib</description>
+    </item>
+    
     <item>
       <title>繼承(2)</title>
       <link>https://arakiliu.github.io/2020/12/21/inheritance/</link>
