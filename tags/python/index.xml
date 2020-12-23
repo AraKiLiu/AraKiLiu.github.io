@@ -13,7 +13,7 @@
       <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://arakiliu.github.io/2020/12/23/abstract-class/</guid>
-      <description>抽象類別 Abstract Class 抽象類別：不做實例的類別，給其他類別繼承用的基底類別base class。一個類別中有一個會一個以上的abstract method</description>
+      <description>抽象類別 Abstract Class 抽象類別：不做實例的類別，給其他類別繼承用的基底類別base class。一個類別中有一個或一個以上的abstract method</description>
     </item>
     
     <item>
