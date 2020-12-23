@@ -6,22 +6,22 @@
     <description>Recent content in Categories on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Tue, 22 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python</title>
+      <link>https://arakiliu.github.io/categories/python/</link>
+      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/categories/python/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>IOT</title>
       <link>https://arakiliu.github.io/categories/iot/</link>
       <pubDate>Tue, 22 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://arakiliu.github.io/categories/iot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://arakiliu.github.io/categories/python/</link>
-      <pubDate>Mon, 21 Dec 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://arakiliu.github.io/categories/python/</guid>
       <description></description>
     </item>
     

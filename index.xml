@@ -6,7 +6,16 @@
     <description>Recent content on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Tue, 22 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>抽象類別 Abstract Class</title>
+      <link>https://arakiliu.github.io/2020/12/23/abstract-class/</link>
+      <pubDate>Wed, 23 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/23/abstract-class/</guid>
+      <description>抽象類別 Abstract Class 抽象類別：不做實例的類別，給其他類別繼承用的基底類別base class。一個類別中有一個會一個以上的abstract method</description>
+    </item>
+    
     <item>
       <title>Using NI USB-GPIB in Raspberry Pi</title>
       <link>https://arakiliu.github.io/2020/12/22/raspi-usb-gpib/</link>

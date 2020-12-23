@@ -7,9 +7,9 @@
 
     
 
-    <title>Using NI USB-GPIB in Raspberry Pi</title>
+    <title>抽象類別 Abstract Class</title>
 
-    <link rel="canonical" href="/2020/12/22/raspi-usb-gpib/">
+    <link rel="canonical" href="/2020/12/23/abstract-class/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -136,20 +136,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/iot" title="IOT">
-                            IOT
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
                         </a>
                         
                     </div>
-                    <h1>Using NI USB-GPIB in Raspberry Pi</h1>
-                    <h2 class="subheading">RasPi using GPIB</h2>
+                    <h1>抽象類別 Abstract Class</h1>
+                    <h2 class="subheading">抽象類別</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Tuesday, December 22, 2020
+                        Wednesday, December 23, 2020
                         
                         
                         
@@ -174,143 +174,24 @@
                 post-container">
 
                 
-                <h2 id="更新系統">更新系統</h2>
-<pre><code>$ sudo apt-get update
-$ sudo apt-get upgrade
-</code></pre><h2 id="安裝rpi-source">安裝rpi-source</h2>
-<pre><code>$ sudo apt-get install -y git bc bison flex libssl-dev libncurses5-dev
-</code></pre><p>
-  <img src="https://i.imgur.com/mG1LaBw.png" alt="">
+                <h2 id="抽象類別-abstract-class">抽象類別 Abstract Class</h2>
+<p>抽象類別：不做實例的類別，給其他類別繼承用的基底類別base class。一個類別中有一個會一個以上的abstract method，那就數於abstract class。</p>
+<p>抽象方法：只有內容沒有實作的方法。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> abc <span style="color:#00f">import</span> ABCMeta, abstractmethod, ABC <span style="color:#008000"># abstract base class, ABC is helper class</span>
 
-</p>
-<pre><code>$ sudo apt install raspberrypi-kernel-headers
-</code></pre><p>
-  <img src="https://i.imgur.com/iIcMhBQ.png" alt="">
-
-</p>
-<pre><code>$ sudo wget https://raw.githubusercontent.com/notro/rpi-source/master/rpi-source -O /usr/bin/rpi-source &amp;&amp; sudo chmod +x /usr/bin/rpi-source &amp;&amp; /usr/bin/rpi-source -q --tag-update
-</code></pre><p>
-  <img src="https://i.imgur.com/RFbivSJ.png" alt="">
-
-</p>
-<pre><code>$ sudo rpi-source
-</code></pre><p>
-  <img src="https://i.imgur.com/I5kUU8k.png" alt="">
-
-</p>
-<h2 id="安裝linux-gpib">安裝Linux-gpib</h2>
-<pre><code>$ sudo apt-get install -y tk-dev build-essential texinfo texi2html libcwidget-dev libncurses5-dev libx11-dev binutils-dev bison flex libusb-1.0-0 libusb-dev libmpfr-dev libexpat1-dev tofrodos subversion autoconf automake libtool
-</code></pre><p>
-  <img src="https://i.imgur.com/ULB0qCF.png" alt="">
-
-</p>
-<pre><code>$ sudo mkdir linux-gpib
-$ cd linux-gpib/
-$ sudo svn checkout svn://svn.code.sf.net/p/linux-gpib/code/trunk linux-gpib-code
-</code></pre><p>
-  <img src="https://i.imgur.com/BGx2phX.png" alt="">
-
-</p>
-<p>下圖為目錄結構，有兩個資料夾linux-gpib-kernel與linux-gpib-user</p>
-<p>
-  <img src="https://i.imgur.com/PO0hqO9.png" alt="">
-
-</p>
-<pre><code>$ cd linux-gpib-kernel
-$ sudo make
-</code></pre><p>
-  <img src="https://i.imgur.com/EKNCEqz.png" alt="">
-
-</p>
-<pre><code>$ sudo make install
-</code></pre><p>
-  <img src="https://i.imgur.com/BptsbLe.png" alt="">
-
-</p>
-<pre><code>$ cd /home/pi/linux-gpib/linux-gpib-code/linux-gpib-user
-$ sudo ./bootstrap
-</code></pre><p>
-  <img src="https://i.imgur.com/GmhSLsz.png" alt="">
-
-</p>
-<pre><code>$ sudo ./configure
-</code></pre><p>
-  <img src="https://i.imgur.com/GWVDSxx.png" alt="">
-
-</p>
-<pre><code>$ sudo make
-</code></pre><p>
-  <img src="https://i.imgur.com/IpIjFvv.png" alt="">
-
-</p>
-<pre><code>$ sudo make install
-</code></pre><p>
-  <img src="https://i.imgur.com/NEIIk5k.png" alt="">
-
-</p>
-<h2 id="gpib設定">GPIB設定</h2>
-<pre><code>$ sudo apt-get install -y vim
-</code></pre><p>
-  <img src="https://i.imgur.com/8uwNkb0.png" alt="">
-
-</p>
-<p>尋找gpib.conf</p>
-<pre><code>$ sudo find / -name gpib.conf
-</code></pre><p>
-  <img src="https://i.imgur.com/rNOA77C.png" alt="">
-
-</p>
-<p>根據尋找的gpib.conf位置去修改檔案</p>
-<pre><code>$ sudo vim /usr/local/etc/gpib.conf
-</code></pre><ol>
-<li>按I進入修改。</li>
-<li>將ni_pic改為ni_usb_b或raspi_gpib</li>
-<li>按下Esc</li>
-<li>鍵入:wq按下Enter退出Vim</li>
-</ol>
-<p>修改前：</p>
-<p>
-  <img src="https://i.imgur.com/GtbUo3l.png" alt="">
-
-</p>
-<p>修改後：</p>
-<p>
-  <img src="https://i.imgur.com/g8VqMxD.png" alt="">
-
-</p>
-<pre><code>$ sudo modprobe ni_usb_gpib
-$ sudo ldconfig
-$ sudo gpib_config
-$ lsmod
-</code></pre><p>
-  <img src="https://i.imgur.com/a2WsGQ0.png" alt="">
-
-</p>
-<h2 id="用python測試gpib">用Python測試GPIB</h2>
-<h3 id="testing-gpib-operation"><strong>Testing GPIB operation</strong></h3>
-<p>
-  <img src="https://i.imgur.com/ec7rKE4.png" alt="">
-
-</p>
-<h3 id="python-application-to-talk-gpib-from-raspberry-pi"><strong>Python-application to talk GPIB from Raspberry Pi</strong></h3>
-<p>
-  <img src="https://i.imgur.com/tsQhVqP.png" alt="">
-
-</p>
-<p>
-  <img src="https://i.imgur.com/o5B2xKO.png" alt="">
-
-</p>
-<p><strong>Python-application to talk VISA from Raspberry Pi</strong></p>
-<pre><code>$sudo pip3 install pyvisa pyvisa-py gpib-ctypes
-</code></pre><p>
-  <img src="https://i.imgur.com/hzpNU4B.png" alt="">
-
-</p>
-<p>
-  <img src="https://i.imgur.com/DXjnTnl.png" alt="">
-
-</p>
+<span style="color:#008000"># class Employee(ABC):</span>
+<span style="color:#00f">class</span> <span style="color:#2b91af">Employee</span>(metaclass=ABCMeta): <span style="color:#008000"># base class</span>
+  @abstractmethod
+  <span style="color:#00f">def</span> SayHi(self): <span style="color:#008000"># abstract method</span>
+    <span style="color:#00f">pass</span>
+  
+<span style="color:#00f">class</span> <span style="color:#2b91af">Waiter</span>(Employee)
+  <span style="color:#00f">def</span> SayHi(self): <span style="color:#008000"># override</span>
+    <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;歡迎光臨&#39;</span>)
+    
+waiter = Waiter()
+waiter.SayHi() <span style="color:#008000"># 歡迎光臨</span>
+</code></pre></div><p><strong>好處：定義藍圖後，所有的開發人員就有個開發方向依歸。</strong></p>
 
 
                 
@@ -319,15 +200,10 @@ $ lsmod
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/21/inheritance/" data-toggle="tooltip" data-placement="top" title="繼承(2)">&larr;
+                        <a href="/2020/12/22/raspi-usb-gpib/" data-toggle="tooltip" data-placement="top" title="Using NI USB-GPIB in Raspberry Pi">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/23/abstract-class/" data-toggle="tooltip" data-placement="top" title="抽象類別 Abstract Class">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
