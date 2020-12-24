@@ -7,9 +7,9 @@
 
     
 
-    <title>抽象類別 Abstract Class</title>
+    <title>裝飾器 Decorator</title>
 
-    <link rel="canonical" href="/2020/12/23/abstract-class/">
+    <link rel="canonical" href="/2020/12/24/Decorator/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -141,15 +141,15 @@
                         </a>
                         
                     </div>
-                    <h1>抽象類別 Abstract Class</h1>
-                    <h2 class="subheading">抽象類別</h2>
+                    <h1>裝飾器 Decorator</h1>
+                    <h2 class="subheading">裝飾器 Decorator</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Wednesday, December 23, 2020
+                        Thursday, December 24, 2020
                         
                         
                         
@@ -174,24 +174,81 @@
                 post-container">
 
                 
-                <h2 id="抽象類別-abstract-class">抽象類別 Abstract Class</h2>
-<p>抽象類別：不做實例的類別，給其他類別繼承用的基底類別base class。一個類別中有一個或一個以上的abstract method，那就數於abstract class。</p>
-<p>抽象方法：只有內容沒有實作的方法。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> abc <span style="color:#00f">import</span> ABCMeta, abstractmethod, ABC <span style="color:#008000"># abstract base class, ABC is helper class</span>
+                <h2 id="裝飾器-decorator加工修飾加上一些我們要的功能">裝飾器 Decorator：加工修飾加上一些我們要的功能</h2>
+<p>print_fun_name(func) 會把傳入的 function 再利用一個我們命為 wrapper( )的內部function做加工，然後在用 return wrapper 吐出修飾過的 function wrapper，就完成「修飾」的任務</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> print_fun_name(func):
+	<span style="color:#00f">def</span> wrapper():
+    	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;runing: &#34;</span>, func.__name__)
+      func()
+  <span style="color:#00f">return</span> wrapper
 
-<span style="color:#008000"># class Employee(ABC):</span>
-<span style="color:#00f">class</span> <span style="color:#2b91af">Employee</span>(metaclass=ABCMeta): <span style="color:#008000"># base class</span>
-  @abstractmethod
-  <span style="color:#00f">def</span> SayHi(self): <span style="color:#008000"># abstract method</span>
-    <span style="color:#00f">pass</span>
-  
-<span style="color:#00f">class</span> <span style="color:#2b91af">Waiter</span>(Employee)
-  <span style="color:#00f">def</span> SayHi(self): <span style="color:#008000"># override</span>
-    <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;歡迎光臨&#39;</span>)
-    
-waiter = Waiter()
-waiter.SayHi() <span style="color:#008000"># 歡迎光臨</span>
-</code></pre></div><p><strong>好處：定義藍圖後，所有的開發人員就有個開發方向依歸。</strong></p>
+<span style="color:#00f">def</span> Say():
+	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;Hi~&#34;</span>)
+
+<span style="color:#00f">if</span> __name__ == <span style="color:#a31515">&#34;__main__&#34;</span>
+	Say = print_fun_name(Say)
+  Say()
+  <span style="color:#008000"># runing: Say</span>
+  <span style="color:#008000"># Hi~</span>
+</code></pre></div><p><strong>當有很多function都需要做相同的事情或執行相同的程式碼，就可以用裝飾器來做。</strong></p>
+<p>例如：計算時間就很適合使用裝飾器</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> print_fun_name(func):
+	<span style="color:#00f">def</span> wrapper():
+    	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;runing: &#34;</span>, func.__name__)
+      func()
+  <span style="color:#00f">return</span> wrapper
+
+<span style="color:#00f">def</span> fun_Timer(func):
+	<span style="color:#00f">def</span> wrapper():
+    	<span style="color:#00f">import</span> time
+			start = time.time()
+      func()
+      end = time.time()
+			<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;elapsed&#39;</span>, end - start, <span style="color:#a31515">&#39;seconds&#39;</span>)
+  <span style="color:#00f">return</span> wrapper
+
+<span style="color:#00f">def</span> Say():
+	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;Hi~&#34;</span>)
+
+<span style="color:#00f">if</span> __name__ == <span style="color:#a31515">&#34;__main__&#34;</span>
+	Say = print_fun_name(Say)
+  Say = fun_Timer(Say)
+  Say()
+  <span style="color:#008000"># runing: Say</span>
+  <span style="color:#008000"># elapsed 0.00192748472394 seconds</span>
+</code></pre></div><p>可以直接用**@**做加裝。syntax candy（語法糖、語法糖衣)。</p>
+<p>裝飾器的多層會有順序性，會先合併最靠近的裝飾器，所以會先裝上＠fun_Timer在裝上@print_fun_name，因為在第一個＠fun_Timer加工後function被包裝為wrapper，所以後面再加裝@print_fun_name後，印出的名稱會為&quot;runing: wrapper&quot;。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> print_fun_name(func):
+	<span style="color:#00f">def</span> wrapper():
+    	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;runing: &#34;</span>, func.__name__)
+      func()
+  <span style="color:#00f">return</span> wrapper
+
+<span style="color:#00f">def</span> fun_Timer(func):
+	<span style="color:#00f">def</span> wrapper():
+    	<span style="color:#00f">import</span> time
+			start = time.time()
+      func()
+      end = time.time()
+			<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;elapsed&#39;</span>, end - start, <span style="color:#a31515">&#39;seconds&#39;</span>)
+  <span style="color:#00f">return</span> wrapper
+
+@print_fun_name
+@fun_Timer
+<span style="color:#00f">def</span> Say():
+	<span style="color:#00f">print</span>(<span style="color:#a31515">&#34;Hi~&#34;</span>)
+
+<span style="color:#00f">if</span> __name__ == <span style="color:#a31515">&#34;__main__&#34;</span>
+  Say()
+  <span style="color:#008000"># runing: wrapper</span>
+  <span style="color:#008000"># elapsed 0.00192748472394 seconds</span>
+</code></pre></div><p><strong>Decorator 的優點：</strong></p>
+<ul>
+<li><strong>靈活度高</strong></li>
+<li><strong>易讀性高</strong></li>
+<li><strong>協助封裝效果好</strong></li>
+<li><strong>程式碼重複率低/簡潔度高</strong></li>
+</ul>
 
 
                 
@@ -200,15 +257,10 @@ waiter.SayHi() <span style="color:#008000"># 歡迎光臨</span>
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/22/raspi-usb-gpib/" data-toggle="tooltip" data-placement="top" title="Using NI USB-GPIB in Raspberry Pi">&larr;
+                        <a href="/2020/12/23/abstract-class/" data-toggle="tooltip" data-placement="top" title="抽象類別 Abstract Class">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/24/Decorator/" data-toggle="tooltip" data-placement="top" title="裝飾器 Decorator">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

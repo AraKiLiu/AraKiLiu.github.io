@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Wed, 23 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>裝飾器 Decorator</title>
+      <link>https://arakiliu.github.io/2020/12/24/Decorator/</link>
+      <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/24/Decorator/</guid>
+      <description>裝飾器 Decorator：加工修飾加上一些我們要的功能 print_fun_name(func) 會把傳入的 function 再利用一個我們命為 wrapper( )的內部function做加工，然後在用 return wrapper 吐出修飾</description>
+    </item>
+    
     <item>
       <title>抽象類別 Abstract Class</title>
       <link>https://arakiliu.github.io/2020/12/23/abstract-class/</link>
