@@ -174,7 +174,8 @@
                 post-container">
 
                 
-                <h2 id="裝飾器-decorator加工修飾加上一些我們要的功能">裝飾器 Decorator：加工修飾加上一些我們要的功能</h2>
+                <h2 id="裝飾器-decorator">裝飾器 Decorator</h2>
+<p><strong>加工修飾加上一些我們要的功能</strong></p>
 <p>print_fun_name(func) 會把傳入的 function 再利用一個我們命為 wrapper( )的內部function做加工，然後在用 return wrapper 吐出修飾過的 function wrapper，就完成「修飾」的任務</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> print_fun_name(func):
 	<span style="color:#00f">def</span> wrapper():
@@ -216,7 +217,7 @@
   Say()
   <span style="color:#008000"># runing: Say</span>
   <span style="color:#008000"># elapsed 0.00192748472394 seconds</span>
-</code></pre></div><p>可以直接用**@**做加裝。syntax candy（語法糖、語法糖衣)。</p>
+</code></pre></div><p>可以直接用@做加裝。syntax candy（語法糖、語法糖衣)。</p>
 <p>裝飾器的多層會有順序性，會先合併最靠近的裝飾器，所以會先裝上＠fun_Timer在裝上@print_fun_name，因為在第一個＠fun_Timer加工後function被包裝為wrapper，所以後面再加裝@print_fun_name後，印出的名稱會為&quot;runing: wrapper&quot;。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">def</span> print_fun_name(func):
 	<span style="color:#00f">def</span> wrapper():
@@ -261,6 +262,11 @@
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2020/12/25/Closure/" data-toggle="tooltip" data-placement="top" title="閉包 Closure">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
 

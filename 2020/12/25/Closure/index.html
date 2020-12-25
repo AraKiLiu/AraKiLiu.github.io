@@ -7,9 +7,9 @@
 
     
 
-    <title>Python</title>
+    <title>閉包 Closure</title>
 
-    <link rel="canonical" href="/categories/python/">
+    <link rel="canonical" href="/2020/12/25/Closure/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -123,14 +123,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>閉包 Closure</h1>
+                    <h2 class="subheading">閉包 Closure</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Friday, December 25, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -139,244 +162,131 @@
 
 
 
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">string =<span style="color:#a31515">&#39;global&#39;</span>
+<span style="color:#00f">def</span> assignment():
+  string = <span style="color:#a31515">&#39;Enclosd&#39;</span> <span style="color:#008000"># Enclosd</span>
+  <span style="color:#00f">def</span> inner():
+    <span style="color:#00f">print</span>(string) <span style="color:#008000">#local</span>
+  <span style="color:#00f">return</span> inner
+
+func = assignment()
+<span style="color:#00f">print</span>(func) <span style="color:#008000"># &lt;function assignment.&lt;locals&gt;.inner at 0x000001AED30AAF28&gt;</span>
+func() <span style="color:#008000"># Enclosd</span>
+<span style="color:#00f">print</span>(string) <span style="color:#008000"># global</span>
+</code></pre></div><p>在最後的print(string)中，不會因為呼叫了func( )而使得最後的輸出被修改，assignment中的變數，不會因為在外層呼叫而漏致外層。</p>
+<p>當一個巢狀方法 (nested function)，需要用到 enclosd 區間，則會將他一起打包出來。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">string =<span style="color:#a31515">&#39;global&#39;</span>
+<span style="color:#00f">def</span> assignment():
+  <span style="color:#00f">class</span> <span style="color:#2b91af">Superman</span>:
+    <span style="color:#00f">def</span> __init__(self):
+      <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;I am Superman&#39;</span>)
+      
+  string = <span style="color:#a31515">&#39;Enclosd&#39;</span> <span style="color:#008000"># Enclosd</span>
   
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/16/dunder_methods/">
-        
-        <h2 class="post-title">
-            雙底線方法
-        </h2>
-	
-        <h3 class="post-subtitle">
-            雙底線方法
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Wednesday, December 16, 2020
+  <span style="color:#00f">def</span> inner1():
+    <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;inner1&#39;</span>)
     
-    
-    </p>
+  <span style="color:#00f">def</span> inner2():
+    <span style="color:#00f">print</span>(string)
+    inner1()
+    man = Superman()
+  <span style="color:#00f">return</span> inner2
 
-</div>
-<hr>
+func = assignment()
+func() 
+<span style="color:#008000"># Enclosd</span>
+<span style="color:#008000"># inner1</span>
 
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/15/underscore/">
-        
-        <h2 class="post-title">
-            底線的各種情況與涵義
-        </h2>
-	
-        <h3 class="post-subtitle">
-            底線的各種情況與涵義
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Tuesday, December 15, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/14/Scope/">
-        
-        <h2 class="post-title">
-            Scope
-        </h2>
-	
-        <h3 class="post-subtitle">
-            範圍Spoce
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 14, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/11/Namespace/">
-        
-        <h2 class="post-title">
-            Namespace
-        </h2>
-	
-        <h3 class="post-subtitle">
-            命名空間Namespace
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Friday, December 11, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/10/pass-by-reference/">
-        
-        <h2 class="post-title">
-            參數的傳遞模式
-        </h2>
-	
-        <h3 class="post-subtitle">
-            python中參數的傳遞模式
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 10, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-
-            
-
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/categories/python/">&larr; Newer Posts</a>
-    </li>
-    
-    
+<span style="color:#00f">print</span>(func.__closure__) <span style="color:#008000"># 可以列出打包的東西</span>
+<span style="color:#008000"># (&lt;cell at 0x107236fd0: type object at 0x7f98c9b04360&gt;, &lt;cell at 0x107236fa0: function object at 0x107247430&gt;, &lt;cell at 0x107236f10: str object at 0x10724cd30&gt;)</span>
+</code></pre></div><p><strong>閉包就是保護與偷渡的角色。</strong></p>
+<p><strong>閉包特色：</strong></p>
+<ul>
+<li><strong>可降低global var使用</strong></li>
+<li><strong>在function的scope外使用function</strong></li>
+<li><strong>造就decorator</strong></li>
 </ul>
 
 
-       	</div>
-        
+                
 
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
-                
-                    <a href="/tags/iot" title="iot">
-                        iot
-                    </a>
-                
-            
-                
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
-    
-
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/24/Decorator/" data-toggle="tooltip" data-placement="top" title="裝飾器 Decorator">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/iot" title="iot">
+                            iot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 

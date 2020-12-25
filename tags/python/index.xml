@@ -6,14 +6,23 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Thu, 24 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>閉包 Closure</title>
+      <link>https://arakiliu.github.io/2020/12/25/Closure/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/25/Closure/</guid>
+      <description>string =&amp;#39;global&amp;#39; def assignment(): string = &amp;#39;Enclosd&amp;#39; # Enclosd def inner(): print(string) #local return inner func = assignment() print(func) # &amp;lt;function assignment.&amp;lt;locals&amp;gt;.inner at 0x000001AED30AAF28&amp;gt; func() # Enclosd print(string) # global 在最後的print(string)中，不會因為呼叫了func( )而使得最後的輸出</description>
+    </item>
+    
     <item>
       <title>裝飾器 Decorator</title>
       <link>https://arakiliu.github.io/2020/12/24/Decorator/</link>
       <pubDate>Thu, 24 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://arakiliu.github.io/2020/12/24/Decorator/</guid>
-      <description>裝飾器 Decorator：加工修飾加上一些我們要的功能 print_fun_name(func) 會把傳入的 function 再利用一個我們命為 wrapper( )的內部function做加工，然後在用 return wrapper 吐出修飾</description>
+      <description>裝飾器 Decorator 加工修飾加上一些我們要的功能 print_fun_name(func) 會把傳入的 function 再利用一個我們命為 wrapper( )的內部function做加工，然後在用 return wrapper 吐出修飾過的 function wrappe</description>
     </item>
     
     <item>
