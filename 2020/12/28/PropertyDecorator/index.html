@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-th">
 <head>
-	<meta name="generator" content="Hugo 0.79.0" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
 
-    <title>工程師的呢喃</title>
+    <title>Property 裝飾器</title>
 
-    <link rel="canonical" href="/">
+    <link rel="canonical" href="/2020/12/28/PropertyDecorator/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -124,14 +123,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>Property 裝飾器</h1>
+                    <h2 class="subheading">Property 裝飾器</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Monday, December 28, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -140,248 +162,126 @@
 
 
 
-  
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
 
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/21/inheritance/">
-        
-        <h2 class="post-title">
-            繼承(2)
-        </h2>
-	
-        <h3 class="post-subtitle">
-            繼承
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 21, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/17/inheritance/">
-        
-        <h2 class="post-title">
-            繼承(1)
-        </h2>
-	
-        <h3 class="post-subtitle">
-            繼承
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 17, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/16/dunder_methods/">
-        
-        <h2 class="post-title">
-            雙底線方法
-        </h2>
-	
-        <h3 class="post-subtitle">
-            雙底線方法
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Wednesday, December 16, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/15/underscore/">
-        
-        <h2 class="post-title">
-            底線的各種情況與涵義
-        </h2>
-	
-        <h3 class="post-subtitle">
-            底線的各種情況與涵義
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Tuesday, December 15, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/14/Scope/">
-        
-        <h2 class="post-title">
-            Scope
-        </h2>
-	
-        <h3 class="post-subtitle">
-            範圍Spoce
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 14, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
+<article>
+    <div class="container">
+        <div class="row">
 
             
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
 
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/page/3/">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/iot" title="iot">
-                        iot
-                    </a>
-                
-            
-                
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
+                <h2 id="封裝-encapsulation">封裝 encapsulation</h2>
+<p>封裝 encapsulation：在物件導向中，封裝就是不讓外部使用者直接取用物件中的內容，只能用方法來修改。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(object):
+    <span style="color:#00f">def</span> __init__(self, wheel):
+        self._wheel = wheel
+        
+    <span style="color:#00f">def</span> get_wheel(self):
+      <span style="color:#00f">return</span> self._wheel
     
+    <span style="color:#00f">def</span> set_wheel(self, wheel):
+      self._wheel = wheel
+</code></pre></div><h2 id="property">Property</h2>
+<p>加上 property 裝飾器，就可以將私有屬性讓使用者用起來像公開屬性一樣。</p>
+<p>使用property 裝飾器，方法名稱必須是同名。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>(object):
+    <span style="color:#00f">def</span> __init__(self, wheel):
+        self.wheel = wheel <span style="color:#008000"># property</span>
+        
+    @property
+    <span style="color:#00f">def</span> wheel(self):
+      <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;get wheel&#39;</span>)
+      <span style="color:#00f">return</span> self._wheel
+    
+    @wheel.setter
+    <span style="color:#00f">def</span> wheel(self, wheel):
+      <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;set wheel&#39;</span>)
+      self._wheel = wheel
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+toyuta = Car(17)
+<span style="color:#00f">print</span>(toyuta.wheel) 
+<span style="color:#008000"># get wheel</span>
+<span style="color:#008000"># 17</span>
+toyuta.wheel = 21 
+<span style="color:#008000"># set wheel</span>
+</code></pre></div><p>設計流程：</p>
+<ol>
+<li>直接設計屬性為public，除非真的只有class內部要用到，則可以寫為有底線的屬性(當作private)。</li>
+<li>如需要getter, setter概念的method使用@property去達成。</li>
+</ol>
+
+
+                
+
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/25/Closure/" data-toggle="tooltip" data-placement="top" title="閉包 Closure">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/iot" title="iot">
+                            iot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 

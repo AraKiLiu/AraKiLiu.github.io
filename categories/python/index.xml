@@ -6,7 +6,16 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Property 裝飾器</title>
+      <link>https://arakiliu.github.io/2020/12/28/PropertyDecorator/</link>
+      <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/28/PropertyDecorator/</guid>
+      <description>封裝 encapsulation 封裝 encapsulation：在物件導向中，封裝就是不讓外部使用者直接取用物件中的內容，只能用方法來修改。 class Car(object): def __init__(self, wheel): self._wheel = wheel def get_wheel(self): return self._wheel def</description>
+    </item>
+    
     <item>
       <title>閉包 Closure</title>
       <link>https://arakiliu.github.io/2020/12/25/Closure/</link>
