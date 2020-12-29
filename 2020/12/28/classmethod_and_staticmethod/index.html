@@ -7,9 +7,9 @@
 
     
 
-    <title>Python</title>
+    <title>classmethod &amp; staticmethod</title>
 
-    <link rel="canonical" href="/categories/python/">
+    <link rel="canonical" href="/2020/12/28/classmethod_and_staticmethod/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -123,14 +123,37 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>工程師的呢喃 </h1>
-                    
-		    <span class="subheading">You only live once - 願不加班與你們同在</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/python" title="Python">
+                            Python
+                        </a>
+                        
+                    </div>
+                    <h1>classmethod &amp; staticmethod</h1>
+                    <h2 class="subheading">classmethod和staticmethod</h2>
+                    <span class="meta">
+                        Posted by 
+                        
+                            劉啟仲
+                         
+                        on 
+                        Tuesday, December 29, 2020
+                        
+                        
+                        
+                    </span>
                 </div>
             </div>
         </div>
@@ -139,248 +162,121 @@
 
 
 
+
+<article>
+    <div class="container">
+        <div class="row">
+
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="staticmethod">staticmethod</h2>
+<p>在使用時，不需要用到self自己實例本身時，就可以用staticmethod。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>:
+  <span style="color:#00f">def</span> __inti__(self, exterior):
+    self.exterior = exterior
+    
+	<span style="color:#00f">def</span> move(self):
+    self.start_engine()
+		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;move is method called.)</span>
   
-<div class="container">
-    <div class="row">
-        
-        
-   	    <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container
-        ">
-            
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/21/inheritance/">
-        
-        <h2 class="post-title">
-            繼承(2)
-        </h2>
-	
-        <h3 class="post-subtitle">
-            繼承
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 21, 2020
+	@staticmethod
+  <span style="color:#00f">def</span> start_engine()
+		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;static method&#39;</span>)
     
+Car.start_engine() <span style="color:#008000"># &#39;static method&#39;</span>
+</code></pre></div><h2 id="classmethod">classmethod</h2>
+<p>要是不想創照實例，但是又想在class中可以用其他function，就可以使用classmethod，用cls( )創造一個實例。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>:
+  <span style="color:#00f">def</span> __inti__(self, exterior, gasoline):
+    self.exterior = exterior
+    self.gasoline = gasoline
     
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/17/inheritance/">
-        
-        <h2 class="post-title">
-            繼承(1)
-        </h2>
-	
-        <h3 class="post-subtitle">
-            繼承
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Thursday, December 17, 2020
+	<span style="color:#00f">def</span> move(self):
+    self.start_engine()
+		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;move is method called.)</span>
+  
+	@classmethod
+  <span style="color:#00f">def</span> start_engine(cls)
+    <span style="color:#00f">print</span>(cls(<span style="color:#a31515">&#39;white&#39;</span>, <span style="color:#a31515">&#39;95&#39;</span>).classmethod)
+		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;static method&#39;</span>)
     
-    
-    </p>
+Car.start_engine()
+<span style="color:#008000"># 95</span>
+<span style="color:#008000"># static method</span>
+</code></pre></div>
 
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/16/dunder_methods/">
-        
-        <h2 class="post-title">
-            雙底線方法
-        </h2>
-	
-        <h3 class="post-subtitle">
-            雙底線方法
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Wednesday, December 16, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/15/underscore/">
-        
-        <h2 class="post-title">
-            底線的各種情況與涵義
-        </h2>
-	
-        <h3 class="post-subtitle">
-            底線的各種情況與涵義
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Tuesday, December 15, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://arakiliu.github.io/2020/12/14/Scope/">
-        
-        <h2 class="post-title">
-            Scope
-        </h2>
-	
-        <h3 class="post-subtitle">
-            範圍Spoce
-        </h3>
-	
-    </a>
-    <p class="post-meta">
-    Posted by 劉啟仲 Monday, December 14, 2020
-    
-    
-    </p>
-
-</div>
-<hr>
-
-
-            
-
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/categories/python/">&larr; Newer Posts</a>
-    </li>
-    
-    
-    <li class="next">
-        <a href="/categories/python/page/3/">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
-
-
-       	</div>
-        
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-             
-            
                 
-                    <a href="/tags/iot" title="iot">
-                        iot
-                    </a>
-                
-            
-                
-                    <a href="/tags/life" title="life">
-                        life
-                    </a>
-                
-            
-                
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-                
-            
-        </div>
-    </section>
-    
 
-    
-	
-    <section class="visible-md visible-lg">
-	<hr><h5><a href="/top/about">ABOUT ME</a></h5>
-        <div class="short-about">
-            
-            <a href="/top/about">
-               <img src="/img/author.jpeg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-            
-                <p>軟體工程師，喜歡開源的冒險者。</p>
-            
-           
-           <ul class="list-inline"> 
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/AraKiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/ArakiLiu">
-                       <span class="fa-stack fa-lg">
-                           <i class="fa fa-circle fa-stack-2x"></i>
-                           <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/12/28/PropertyDecorator/" data-toggle="tooltip" data-placement="top" title="Property 裝飾器">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+
+                
+
+<script src="https://utteranc.es/client.js"
+        repo="AraKiLiu/AraKiLiu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
             </div>
-    </section>
-	
-    
-    
+            
+            <div class="
+                col-lg-11 col-lg-offset-1
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-    
-    
-</div>
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/iot" title="iot">
+                            iot
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/life" title="life">
+                            life
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
 
-	</div>
-</div>
-
+                
+                
+            </div>
+        </div>
+    </div>
+</article>
 
 
 
