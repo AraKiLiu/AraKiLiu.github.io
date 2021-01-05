@@ -6,7 +6,16 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Tue, 29 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flask 連結 PostgreSQL</title>
+      <link>https://arakiliu.github.io/2021/1/5/Flask_link_postgresql/</link>
+      <pubDate>Tue, 05 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/5/Flask_link_postgresql/</guid>
+      <description>Create First Flask web app Flask Tutorial from flask import Flask app = Flask(__name__) app.config[&amp;#34;DEBUG&amp;#34;] = True @app.route(&amp;#39;/&amp;#39;) def home(): return &amp;#34;&amp;lt;h1&amp;gt;Hello Flask!&amp;lt;/h1&amp;gt;&amp;#34; if __name__ == &amp;#39;__main__&amp;#39;: app.run() Database Configure 安裝PostgreSQL套件psycopg2-binary pip install psycopg2-binary 安裝套件flas</description>
+    </item>
+    
     <item>
       <title>classmethod &amp; staticmethod</title>
       <link>https://arakiliu.github.io/2020/12/28/classmethod_and_staticmethod/</link>
@@ -59,6 +68,15 @@
       
       <guid>https://arakiliu.github.io/2020/12/21/inheritance/</guid>
       <description>python中，所有東西都是物件，每個物件都有他自己的型別(type)。 # parent class / base class class Transportation: def __init__(self): self.exterior = &amp;#34;white&amp;#34; def drive(self): print(&amp;#34;drive method is called.&amp;#34;) # child class / deroved class class Car(Transportation): def move(self): print(&amp;#34;move is method called.&amp;#34;) #</description>
+    </item>
+    
+    <item>
+      <title>繼承</title>
+      <link>https://arakiliu.github.io/2020/12/17/inheritance/</link>
+      <pubDate>Thu, 17 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2020/12/17/inheritance/</guid>
+      <description>繼承 (Inheritance) 繼承(Inheritance)：父類別跟子類別的階層關係，子類別會有父類別的屬性與方法。 在程式中將各類別共用屬性與方法方在一個獨立類別</description>
     </item>
     
     <item>
