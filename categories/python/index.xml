@@ -6,7 +6,25 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Tue, 05 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exception Handling</title>
+      <link>https://arakiliu.github.io/2021/1/20/exception_handling/</link>
+      <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/20/exception_handling/</guid>
+      <description>exception：發生在runtime時的error 要是沒有抓到錯誤，就會跑else的區塊，finally則是不管怎樣每次都會跑的區塊，在</description>
+    </item>
+    
+    <item>
+      <title>String Formatting</title>
+      <link>https://arakiliu.github.io/2021/1/12/string_formatting/</link>
+      <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/12/string_formatting/</guid>
+      <description>三種方式： name = &amp;#39;Tom&amp;#39; age = 30 height = 170.8 print(&amp;#39;hi %s&amp;#39; % (name)) print(&amp;#39;年齡： %d&amp;#39; % (age)) print(&amp;#39;身高： %f&amp;#39; % (height)) name = &amp;#39;Tom&amp;#39; age = 30 height = 170.8 print(&amp;#39;hi {}&amp;#39;.format(name)) print(&amp;</description>
+    </item>
+    
     <item>
       <title>Flask 連結 PostgreSQL</title>
       <link>https://arakiliu.github.io/2021/1/5/Flask_link_postgresql/</link>

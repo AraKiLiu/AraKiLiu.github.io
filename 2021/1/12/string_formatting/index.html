@@ -7,9 +7,9 @@
 
     
 
-    <title>Flask 連結 PostgreSQL</title>
+    <title>String Formatting</title>
 
-    <link rel="canonical" href="/2021/1/5/Flask_link_postgresql/">
+    <link rel="canonical" href="/2021/1/12/string_formatting/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -140,20 +140,16 @@
                             Python
                         </a>
                         
-                        <a class="tag" href="/tags/flask" title="Flask">
-                            Flask
-                        </a>
-                        
                     </div>
-                    <h1>Flask 連結 PostgreSQL</h1>
-                    <h2 class="subheading">Flask 連結 PostgreSQL</h2>
+                    <h1>String Formatting</h1>
+                    <h2 class="subheading">字串格式化</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Tuesday, January 5, 2021
+                        Tuesday, January 12, 2021
                         
                         
                         
@@ -178,45 +174,53 @@
                 post-container">
 
                 
-                <h2 id="create-first-flask-web-app">Create First Flask web app</h2>
-<p><a href="https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/">Flask Tutorial</a></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> flask <span style="color:#00f">import</span> Flask
+                <p>三種方式：</p>
+<ol>
+<li></li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name = <span style="color:#a31515">&#39;Tom&#39;</span>
+age = 30
+height = 170.8
 
-app = Flask(__name__)
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;hi </span><span style="color:#a31515">%s</span><span style="color:#a31515">&#39;</span> % (name))
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;年齡： </span><span style="color:#a31515">%d</span><span style="color:#a31515">&#39;</span> % (age))
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;身高： </span><span style="color:#a31515">%f</span><span style="color:#a31515">&#39;</span> % (height))
+</code></pre></div><ol start="2">
+<li></li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name = <span style="color:#a31515">&#39;Tom&#39;</span>
+age = 30
+height = 170.8
 
-app.config[<span style="color:#a31515">&#34;DEBUG&#34;</span>] = True
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;hi {}&#39;</span>.format(name))
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;年齡： {}&#39;</span>.format(age))
+<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;身高： {}&#39;</span>.format(height))
+</code></pre></div><ol start="3">
+<li>python &gt; 3.6</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name = <span style="color:#a31515">&#39;Tom&#39;</span>
+age = 30
+height = 170.8
 
-@app.route(<span style="color:#a31515">&#39;/&#39;</span>)
-<span style="color:#00f">def</span> home():
-    <span style="color:#00f">return</span> <span style="color:#a31515">&#34;&lt;h1&gt;Hello Flask!&lt;/h1&gt;&#34;</span>
+<span style="color:#00f">print</span>(f<span style="color:#a31515">&#39;hi {name}&#39;</span>)
+<span style="color:#00f">print</span>(f<span style="color:#a31515">&#39;年齡： {age}&#39;</span>)
+<span style="color:#00f">print</span>(f<span style="color:#a31515">&#39;身高： {height}&#39;</span>)
+</code></pre></div><p>若是想印出固定字元</p>
+<p>可以使用 &gt;(往右邊對齊) , &lt; (往左邊對齊)符號</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">name1 = <span style="color:#a31515">&#39;Tom&#39;</span>
+name2 = <span style="color:#a31515">&#39;Larry&#39;</span>
 
-<span style="color:#00f">if</span> __name__ == <span style="color:#a31515">&#39;__main__&#39;</span>:
-  app.run()
-</code></pre></div><h2 id="database-configure">Database Configure</h2>
-<p>安裝PostgreSQL套件<strong>psycopg2-binary</strong></p>
-<pre><code> pip install psycopg2-binary
-</code></pre><p>安裝套件<strong>flask-sqlalchemy</strong></p>
-<pre><code>pip install flask-sqlalchemy
-</code></pre><p>在檔案目錄中創建一檔案，名為config.py並加入連線內容</p>
-<pre><code>SQLALCHEMY_DATABASE_URI = &quot;postgresql://[user_name]:[password]@[ip]:[port]/[db_name]&quot;
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-</code></pre><p>加入資料庫連線</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> flask <span style="color:#00f">import</span> Flask
-<span style="color:#00f">from</span> flask_sqlalchemy <span style="color:#00f">import</span> SQLAlchemy
-
-app = Flask(__name__)
-
-app.config[<span style="color:#a31515">&#34;DEBUG&#34;</span>] = True
-app.config.from_object(<span style="color:#a31515">&#39;config&#39;</span>)
-db = SQLAlchemy(app)
-
-@app.route(<span style="color:#a31515">&#39;/&#39;</span>)
-<span style="color:#00f">def</span> home():
-    <span style="color:#00f">return</span> <span style="color:#a31515">&#34;&lt;h1&gt;Hello Flask!&lt;/h1&gt;&#34;</span>
-
-<span style="color:#00f">if</span> __name__ == <span style="color:#a31515">&#39;__main__&#39;</span>:
-  app.run()
-</code></pre></div><p>運行python app.py，如果沒有錯誤，就表是資料庫連結成功。</p>
+<span style="color:#00f">print</span>(f<span style="color:#a31515">&#39;hi {name1:&lt;8}!!&#39;</span>) <span style="color:#008000">#hi Tom     !!</span>
+<span style="color:#00f">print</span>(f<span style="color:#a31515">&#39;hi {name2:&lt;8}!!&#39;</span>) <span style="color:#008000">#hi Larry   !!</span>
+</code></pre></div><p>docker run -d<br>
+&ndash;name gitlab<br>
+-p 8080:80 -p 443:443 -p 22:22
+&ndash;privileged
+&ndash;restart always
+-v ~/docker/gitlab/config:/etc/gitlab
+-v ~/docker/gitlab/logs:/var/log/gitlab
+-v ~/docker/gitlab/data:/var/opt/gitlab<br>
+gitlab/gitlab-ce</p>
 
 
                 
@@ -225,13 +229,13 @@ db = SQLAlchemy(app)
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/28/classmethod_and_staticmethod/" data-toggle="tooltip" data-placement="top" title="classmethod &amp; staticmethod">&larr;
+                        <a href="/2021/1/5/Flask_link_postgresql/" data-toggle="tooltip" data-placement="top" title="Flask 連結 PostgreSQL">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2021/1/12/string_formatting/" data-toggle="tooltip" data-placement="top" title="String Formatting">Next
+                        <a href="/2021/1/20/exception_handling/" data-toggle="tooltip" data-placement="top" title="Exception Handling">Next
                             Post &rarr;</a>
                     </li>
                     
