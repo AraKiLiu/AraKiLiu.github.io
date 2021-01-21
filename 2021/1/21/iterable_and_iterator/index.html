@@ -7,9 +7,9 @@
 
     
 
-    <title>Exception Handling</title>
+    <title>Iterable And Iterator</title>
 
-    <link rel="canonical" href="/2021/1/20/exception_handling/">
+    <link rel="canonical" href="/2021/1/21/iterable_and_iterator/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -141,15 +141,15 @@
                         </a>
                         
                     </div>
-                    <h1>Exception Handling</h1>
-                    <h2 class="subheading">例外捕捉</h2>
+                    <h1>Iterable And Iterator</h1>
+                    <h2 class="subheading">可迭代物與迭代器</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Wednesday, January 20, 2021
+                        Thursday, January 21, 2021
                         
                         
                         
@@ -174,22 +174,31 @@
                 post-container">
 
                 
-                <p>exception：發生在runtime時的error</p>
-<p>要是沒有抓到錯誤，就會跑else的區塊，finally則是不管怎樣每次都會跑的區塊，在一般應用中例如可以把資料庫的關閉流程放在finally，這樣資料庫在這個程序中，只要執行完後，不管是否成功，都會去關閉它。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">try</span>:
-    <span style="color:#00f">with</span> open(<span style="color:#a31515">&#39;f.txt&#39;</span>, <span style="color:#a31515">&#39;r&#39;</span>) <span style="color:#00f">as</span> f:
-      <span style="color:#00f">for</span> line <span style="color:#00f">in</span> f:
-        x = int(line.strip())
-<span style="color:#00f">except</span> FileNotFoundError <span style="color:#00f">as</span> e:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;i caught an error:&#39;</span>, e)
-<span style="color:#00f">except</span> ValueError <span style="color:#00f">as</span> e:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;could not convert to int&#39;</span>, e)
-<span style="color:#00f">else</span>:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;no exception caught&#39;</span>)
-<span style="color:#00f">finally</span>:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;in finally&#39;</span>)
-</code></pre></div><p>參考；<a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions</a></p>
-
+                <h2 id="可迭代物件">可迭代物件</h2>
+<p>列表、元組、字串、字典&hellip;，可以使用for迴圈一個一個輪詢的稱為可迭代物件（Iterable），那這個過程稱為iterate over，每一回輪詢就是iteration</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [1, 2, 3]
+<span style="color:#00f">for</span> i <span style="color:#00f">in</span> x:
+  <span style="color:#00f">print</span>(i)
+</code></pre></div><p>迭代器有兩個基本的方法：iter( ) 和 next( )。
+我們使用iter（iterable）即可把可迭代物件轉換成迭代器
+使用next（iterator）來獲取迭代器的下一個值</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = [1, 2, 3]
+<span style="color:#00f">print</span>(dir(x))
+<span style="color:#008000"># [&#39;__add__&#39;, &#39;__class__&#39;, &#39;__class_getitem__&#39;, &#39;__contains__&#39;, &#39;__delattr__&#39;, &#39;__delitem__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__getitem__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__iadd__&#39;, &#39;__imul__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__len__&#39;, &#39;__lt__&#39;, &#39;__mul__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__reversed__&#39;, &#39;__rmul__&#39;, &#39;__setattr__&#39;, &#39;__setitem__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;, &#39;append&#39;, &#39;clear&#39;, &#39;copy&#39;, &#39;count&#39;, &#39;extend&#39;, &#39;index&#39;, &#39;insert&#39;, &#39;pop&#39;, &#39;remove&#39;, &#39;reverse&#39;, &#39;sort&#39;]</span>
+it = x.__iter__() <span style="color:#008000"># 也可寫成 it = iter(x)</span>
+<span style="color:#00f">print</span>(dir(it))
+<span style="color:#008000"># [&#39;__class__&#39;, &#39;__delattr__&#39;, &#39;__dir__&#39;, &#39;__doc__&#39;, &#39;__eq__&#39;, &#39;__format__&#39;, &#39;__ge__&#39;, &#39;__getattribute__&#39;, &#39;__gt__&#39;, &#39;__hash__&#39;, &#39;__init__&#39;, &#39;__init_subclass__&#39;, &#39;__iter__&#39;, &#39;__le__&#39;, &#39;__length_hint__&#39;, &#39;__lt__&#39;, &#39;__ne__&#39;, &#39;__new__&#39;, &#39;__next__&#39;, &#39;__reduce__&#39;, &#39;__reduce_ex__&#39;, &#39;__repr__&#39;, &#39;__setattr__&#39;, &#39;__setstate__&#39;, &#39;__sizeof__&#39;, &#39;__str__&#39;, &#39;__subclasshook__&#39;]</span>
+<span style="color:#00f">print</span>(it.__next__()) <span style="color:#008000"># 也可寫成 next(it)</span>
+<span style="color:#008000"># 1</span>
+<span style="color:#00f">print</span>(it.__next__())
+<span style="color:#008000"># 2</span>
+<span style="color:#00f">print</span>(it.__next__())
+<span style="color:#008000"># 3</span>
+<span style="color:#00f">print</span>(it.__next__())
+<span style="color:#008000"># Traceback (most recent call last):</span>
+<span style="color:#008000">#   File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;</span>
+<span style="color:#008000"># StopIteration</span>
+</code></pre></div>
 
                 
 
@@ -197,15 +206,10 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/1/13/exception_handling/" data-toggle="tooltip" data-placement="top" title="Exception Handling">&larr;
+                        <a href="/2021/1/20/exception_handling/" data-toggle="tooltip" data-placement="top" title="Exception Handling">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2021/1/21/iterable_and_iterator/" data-toggle="tooltip" data-placement="top" title="Iterable And Iterator">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

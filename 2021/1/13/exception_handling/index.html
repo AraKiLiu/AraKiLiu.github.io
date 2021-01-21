@@ -9,7 +9,7 @@
 
     <title>Exception Handling</title>
 
-    <link rel="canonical" href="/2021/1/20/exception_handling/">
+    <link rel="canonical" href="/2021/1/13/exception_handling/">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -149,7 +149,7 @@
                             劉啟仲
                          
                         on 
-                        Wednesday, January 20, 2021
+                        Wednesday, January 13, 2021
                         
                         
                         
@@ -174,22 +174,7 @@
                 post-container">
 
                 
-                <p>exception：發生在runtime時的error</p>
-<p>要是沒有抓到錯誤，就會跑else的區塊，finally則是不管怎樣每次都會跑的區塊，在一般應用中例如可以把資料庫的關閉流程放在finally，這樣資料庫在這個程序中，只要執行完後，不管是否成功，都會去關閉它。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">try</span>:
-    <span style="color:#00f">with</span> open(<span style="color:#a31515">&#39;f.txt&#39;</span>, <span style="color:#a31515">&#39;r&#39;</span>) <span style="color:#00f">as</span> f:
-      <span style="color:#00f">for</span> line <span style="color:#00f">in</span> f:
-        x = int(line.strip())
-<span style="color:#00f">except</span> FileNotFoundError <span style="color:#00f">as</span> e:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;i caught an error:&#39;</span>, e)
-<span style="color:#00f">except</span> ValueError <span style="color:#00f">as</span> e:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;could not convert to int&#39;</span>, e)
-<span style="color:#00f">else</span>:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;no exception caught&#39;</span>)
-<span style="color:#00f">finally</span>:
-  	<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;in finally&#39;</span>)
-</code></pre></div><p>參考；<a href="https://docs.python.org/3/tutorial/errors.html">Errors and Exceptions</a></p>
-
+                
 
                 
 
@@ -197,13 +182,13 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/1/13/exception_handling/" data-toggle="tooltip" data-placement="top" title="Exception Handling">&larr;
+                        <a href="/2021/1/12/string_formatting/" data-toggle="tooltip" data-placement="top" title="String Formatting">&larr;
                             Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2021/1/21/iterable_and_iterator/" data-toggle="tooltip" data-placement="top" title="Iterable And Iterator">Next
+                        <a href="/2021/1/20/exception_handling/" data-toggle="tooltip" data-placement="top" title="Exception Handling">Next
                             Post &rarr;</a>
                     </li>
                     

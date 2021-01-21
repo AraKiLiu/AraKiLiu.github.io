@@ -6,7 +6,16 @@
     <description>Recent content in Python on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Wed, 20 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Iterable And Iterator</title>
+      <link>https://arakiliu.github.io/2021/1/21/iterable_and_iterator/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/21/iterable_and_iterator/</guid>
+      <description>可迭代物件 列表、元組、字串、字典&amp;hellip;，可以使用for迴圈一個一個輪詢的稱為可迭代物件（Iterable），那這個過程稱為iter</description>
+    </item>
+    
     <item>
       <title>Exception Handling</title>
       <link>https://arakiliu.github.io/2021/1/20/exception_handling/</link>
@@ -14,6 +23,15 @@
       
       <guid>https://arakiliu.github.io/2021/1/20/exception_handling/</guid>
       <description>exception：發生在runtime時的error 要是沒有抓到錯誤，就會跑else的區塊，finally則是不管怎樣每次都會跑的區塊，在</description>
+    </item>
+    
+    <item>
+      <title>Exception Handling</title>
+      <link>https://arakiliu.github.io/2021/1/13/exception_handling/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/13/exception_handling/</guid>
+      <description></description>
     </item>
     
     <item>
