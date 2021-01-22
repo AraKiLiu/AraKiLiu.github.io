@@ -6,7 +6,16 @@
     <description>Recent content on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generator</title>
+      <link>https://arakiliu.github.io/2021/1/22/Generator/</link>
+      <pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/22/Generator/</guid>
+      <description>Generator 在python時常混用外，官方文件也都將Iterator與Generator視為同義詞 def generator_numbers(): while True: yield 1 print(next(generator_numbers())) # 1 print(next(generator_numbers())) # 1 print(next(generator_numbers())) # 1 核心在 yield 這個關鍵字上。</description>
+    </item>
+    
     <item>
       <title>Iterable And Iterator</title>
       <link>https://arakiliu.github.io/2021/1/21/iterable_and_iterator/</link>
