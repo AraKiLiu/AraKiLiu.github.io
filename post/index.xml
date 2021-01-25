@@ -13,7 +13,7 @@
       <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://arakiliu.github.io/2021/1/25/DjangoModels/</guid>
-      <description>MODEL模型： 數據邏輯的處理 創立資料 取得資料 新增資料 刪除資料 資料庫的欄位 每一個Models.py都是一個資料表 建立 Superuser 執行指令並輸入帳號密碼</description>
+      <description>MODEL模型： 數據邏輯的處理 創立資料 取得資料 新增資料 刪除資料 資料庫的欄位 每一個Models.py都是一個資料表 產生資料 修改 mysite/settings.py DATABASES = { &#39;default&#39;: { &#39;ENGINE&#39;: &#39;django.db.backends.postgresql&#39;,</description>
     </item>
     
     <item>
