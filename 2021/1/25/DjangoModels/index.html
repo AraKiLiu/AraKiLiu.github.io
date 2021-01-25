@@ -7,9 +7,9 @@
 
     
 
-    <title>classmethod &amp; staticmethod</title>
+    <title>Django Models - 網頁與資料庫連結</title>
 
-    <link rel="canonical" href="/2020/12/28/classmethod_and_staticmethod/">
+    <link rel="canonical" href="/2021/1/25/DjangoModels">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -136,20 +136,24 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                        <a class="tag" href="/tags/django" title="Django">
+                            Django
+                        </a>
+                        
                         <a class="tag" href="/tags/python" title="Python">
                             Python
                         </a>
                         
                     </div>
-                    <h1>classmethod &amp; staticmethod</h1>
-                    <h2 class="subheading">classmethod和staticmethod</h2>
+                    <h1>Django Models - 網頁與資料庫連結</h1>
+                    <h2 class="subheading">網頁與資料庫連結</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Tuesday, December 29, 2020
+                        Monday, January 25, 2021
                         
                         
                         
@@ -174,41 +178,100 @@
                 post-container">
 
                 
-                <h2 id="staticmethod">staticmethod</h2>
-<p>在使用時，不需要用到self自己實例本身時，就可以用staticmethod。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>:
-    <span style="color:#00f">def</span> __inti__(self, exterior):
-        self.exterior = exterior
+                <p>MODEL模型：</p>
+<ul>
+<li>數據邏輯的處理
+<ul>
+<li>創立資料</li>
+<li>取得資料</li>
+<li>新增資料</li>
+<li>刪除資料</li>
+</ul>
+</li>
+<li>資料庫的欄位
+<ul>
+<li>每一個Models.py都是一個資料表</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="建立-superuser">建立 Superuser</h2>
+<p>執行指令並輸入帳號密碼與電子信箱</p>
+<pre><code>$ python manage.py createsuperuser
+</code></pre><p>修改 mysite/settings.py</p>
+<pre><code>DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  #PostgreSQL
+        'NAME': 'dbDjango', #資料庫名稱
+        'USER': 'postgres',  #資料庫帳號
+        'PASSWORD': 'postgres',  #資料庫密碼
+        'HOST': 'localhost',  #Server(伺服器)位址
+        'PORT': '5432'  #PostgreSQL Port號
+    }
+}
+</code></pre><p>輸入下面的指令來產生 migrate</p>
+<pre><code>$ python manage.py migrate
+</code></pre><p>修改 polls/models.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.db <span style="color:#00f">import</span> models
 
-    <span style="color:#00f">def</span> move(self):
-        self.start_engine()
-		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;move is method called.)</span>
-  
-    @staticmethod
-    <span style="color:#00f">def</span> start_engine()
-        <span style="color:#00f">print</span>(<span style="color:#a31515">&#39;static method&#39;</span>)
-    
-Car.start_engine() <span style="color:#008000"># &#39;static method&#39;</span>
-</code></pre></div><h2 id="classmethod">classmethod</h2>
-<p>要是不想創照實例，但是又想在class中可以用其他function，就可以使用classmethod，用cls( )創造一個實例。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">Car</span>:
-    <span style="color:#00f">def</span> __inti__(self, exterior, gasoline):
-        self.exterior = exterior
-        self.gasoline = gasoline
-    
-	<span style="color:#00f">def</span> move(self):
-        self.start_engine()
-		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;move is method called.)</span>
-  
-	@classmethod
-    <span style="color:#00f">def</span> start_engine(cls)
-        <span style="color:#00f">print</span>(cls(<span style="color:#a31515">&#39;white&#39;</span>, <span style="color:#a31515">&#39;95&#39;</span>).classmethod)
-		<span style="color:#00f">print</span>(<span style="color:#a31515">&#39;static method&#39;</span>)
-    
-Car.start_engine()
-<span style="color:#008000"># 95</span>
-<span style="color:#008000"># static method</span>
-</code></pre></div>
+
+<span style="color:#00f">class</span> <span style="color:#2b91af">Question</span>(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField(<span style="color:#a31515">&#39;date published&#39;</span>)
+
+
+<span style="color:#00f">class</span> <span style="color:#2b91af">Choice</span>(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+</code></pre></div><p>輸入下面的指令來為我們對於 model 的改動產生 migrate</p>
+<pre><code>$ python manage.py makemigrations polls
+
+Migrations for 'polls':
+  polls/migrations/0001_initial.py
+    - Create model Question
+    - Create model Choice
+
+</code></pre><p>可以輸入以下指令觀看這次的遷移運行了哪些SQL</p>
+<pre><code>$ python manage.py sqlmigrate polls 0001
+</code></pre><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#00f">BEGIN</span>;
+<span style="color:#008000">--
+</span><span style="color:#008000">-- Create model Question
+</span><span style="color:#008000">--
+</span><span style="color:#008000"></span><span style="color:#00f">CREATE</span> <span style="color:#00f">TABLE</span> <span style="color:#a31515">&#34;polls_question&#34;</span> (
+    <span style="color:#a31515">&#34;id&#34;</span> serial <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span> <span style="color:#00f">PRIMARY</span> <span style="color:#00f">KEY</span>,
+    <span style="color:#a31515">&#34;question_text&#34;</span> varchar(200) <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>,
+    <span style="color:#a31515">&#34;pub_date&#34;</span> <span style="color:#00f">timestamp</span> <span style="color:#00f">with</span> time <span style="color:#00f">zone</span> <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>
+);
+<span style="color:#008000">--
+</span><span style="color:#008000">-- Create model Choice
+</span><span style="color:#008000">--
+</span><span style="color:#008000"></span><span style="color:#00f">CREATE</span> <span style="color:#00f">TABLE</span> <span style="color:#a31515">&#34;polls_choice&#34;</span> (
+    <span style="color:#a31515">&#34;id&#34;</span> serial <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span> <span style="color:#00f">PRIMARY</span> <span style="color:#00f">KEY</span>,
+    <span style="color:#a31515">&#34;choice_text&#34;</span> varchar(200) <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>,
+    <span style="color:#a31515">&#34;votes&#34;</span> integer <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>,
+    <span style="color:#a31515">&#34;question_id&#34;</span> integer <span style="color:#00f">NOT</span> <span style="color:#00f">NULL</span>
+);
+<span style="color:#00f">ALTER</span> <span style="color:#00f">TABLE</span> <span style="color:#a31515">&#34;polls_choice&#34;</span>
+  <span style="color:#00f">ADD</span> <span style="color:#00f">CONSTRAINT</span> <span style="color:#a31515">&#34;polls_choice_question_id_c5b4b260_fk_polls_question_id&#34;</span>
+    <span style="color:#00f">FOREIGN</span> <span style="color:#00f">KEY</span> (<span style="color:#a31515">&#34;question_id&#34;</span>)
+    <span style="color:#00f">REFERENCES</span> <span style="color:#a31515">&#34;polls_question&#34;</span> (<span style="color:#a31515">&#34;id&#34;</span>)
+    <span style="color:#00f">DEFERRABLE</span> <span style="color:#00f">INITIALLY</span> <span style="color:#00f">DEFERRED</span>;
+<span style="color:#00f">CREATE</span> <span style="color:#00f">INDEX</span> <span style="color:#a31515">&#34;polls_choice_question_id_c5b4b260&#34;</span> <span style="color:#00f">ON</span> <span style="color:#a31515">&#34;polls_choice&#34;</span> (<span style="color:#a31515">&#34;question_id&#34;</span>);
+
+<span style="color:#00f">COMMIT</span>;
+</code></pre></div><h2 id="建立-superuser-1">建立 Superuser</h2>
+<pre><code>$ python manage.py createsuperuser
+</code></pre><p>編輯 polls/admin.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.contrib <span style="color:#00f">import</span> admin
+
+<span style="color:#00f">from</span> .models <span style="color:#00f">import</span> Question
+
+admin.site.register(Question)
+</code></pre></div><h2 id="進入-admin">進入 Admin</h2>
+<p>開啟瀏覽器連接 <code>http://localhost:8000/admin/</code></p>
+<p>輸入剛剛建立的 Superuser 就可以看到整個 Admin 介面，可以從這邊查看資料庫的狀況</p>
+
 
                 
 
@@ -216,15 +279,10 @@ Car.start_engine()
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/28/PropertyDecorator/" data-toggle="tooltip" data-placement="top" title="Property 裝飾器">&larr;
+                        <a href="/2021/1/24/DjangoViews" data-toggle="tooltip" data-placement="top" title="Django Views - 網頁的後台邏輯處理">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2021/1/5/Flask_link_postgresql/" data-toggle="tooltip" data-placement="top" title="Flask 連結 PostgreSQL">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

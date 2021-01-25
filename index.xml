@@ -6,7 +6,25 @@
     <description>Recent content on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Fri, 22 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Django Models - 網頁與資料庫連結</title>
+      <link>https://arakiliu.github.io/2021/1/25/DjangoModels/</link>
+      <pubDate>Mon, 25 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/25/DjangoModels/</guid>
+      <description>MODEL模型： 數據邏輯的處理 創立資料 取得資料 新增資料 刪除資料 資料庫的欄位 每一個Models.py都是一個資料表 建立 Superuser 執行指令並輸入帳號密碼</description>
+    </item>
+    
+    <item>
+      <title>Django Views - 網頁的後台邏輯處理</title>
+      <link>https://arakiliu.github.io/2021/1/24/DjangoViews/</link>
+      <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/1/24/DjangoViews/</guid>
+      <description>Views所做的事情： 接收用戶請求 決定請求方法 GET, POST&amp;hellip;. 取得用戶請求內容 資料前處理 取得資料 回應結果 回應一個網頁 回應一個 HTTP CODES 回應 JSON 回應重新導向 VIE</description>
+    </item>
+    
     <item>
       <title>Generator</title>
       <link>https://arakiliu.github.io/2021/1/22/Generator/</link>
