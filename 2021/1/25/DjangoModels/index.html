@@ -210,19 +210,32 @@
 </code></pre><p>輸入下面的指令來產生 migrate</p>
 <pre><code>$ python manage.py migrate
 </code></pre><p>修改 polls/models.py</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.db <span style="color:#00f">import</span> models
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">import</span> datetime
+
+<span style="color:#00f">from</span> django.db <span style="color:#00f">import</span> models
+<span style="color:#00f">from</span> django.utils <span style="color:#00f">import</span> timezone
 
 
 <span style="color:#00f">class</span> <span style="color:#2b91af">Question</span>(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField(<span style="color:#a31515">&#39;date published&#39;</span>)
 
+    <span style="color:#00f">def</span> __str__(self):
+        <span style="color:#00f">return</span> self.question_text
+
+    <span style="color:#00f">def</span> was_published_recently(self):
+        <span style="color:#00f">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=1)
+
+
 
 <span style="color:#00f">class</span> <span style="color:#2b91af">Choice</span>(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
-</code></pre></div><p>輸入下面的指令來為我們對於 model 的改動產生 migrate</p>
+
+    <span style="color:#00f">def</span> __str__(self):
+        <span style="color:#00f">return</span> self.choice_text
+</code></pre></div><p>輸入下面的指令來為我們對於 model 的改動產生 migrate，這邊只是產生一個紀錄欓，紀錄變化。</p>
 <pre><code>$ python manage.py makemigrations polls
 
 Migrations for 'polls':
@@ -258,7 +271,9 @@ Migrations for 'polls':
 <span style="color:#00f">CREATE</span> <span style="color:#00f">INDEX</span> <span style="color:#a31515">&#34;polls_choice_question_id_c5b4b260&#34;</span> <span style="color:#00f">ON</span> <span style="color:#a31515">&#34;polls_choice&#34;</span> (<span style="color:#a31515">&#34;question_id&#34;</span>);
 
 <span style="color:#00f">COMMIT</span>;
-</code></pre></div><h2 id="建立-superuser">建立 Superuser</h2>
+</code></pre></div><p>輸入下面的指令來將我們的 migrate 實際寫入資料庫中</p>
+<pre><code>$ python manage.py migrate polls
+</code></pre><h2 id="建立-superuser">建立 Superuser</h2>
 <p>執行指令並輸入帳號密碼與電子信箱</p>
 <pre><code>$ python manage.py createsuperuser
 </code></pre><p>編輯 polls/admin.py</p>
@@ -282,6 +297,11 @@ admin.site.register(Question)
                             Previous Post</a>
                     </li>
                     
+                    
+                    <li class="next">
+                        <a href="/2021/2/1/DjangoTemplate" data-toggle="tooltip" data-placement="top" title="Django Template - 網頁前端設計">Next
+                            Post &rarr;</a>
+                    </li>
                     
                 </ul>
 

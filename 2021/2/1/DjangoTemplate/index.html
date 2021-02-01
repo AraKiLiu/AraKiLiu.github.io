@@ -7,9 +7,9 @@
 
     
 
-    <title>Django Views - 網頁的後台邏輯處理</title>
+    <title>Django Template - 網頁前端設計</title>
 
-    <link rel="canonical" href="/2021/1/24/DjangoViews">
+    <link rel="canonical" href="/2021/2/1/DjangoTemplate">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -145,15 +145,15 @@
                         </a>
                         
                     </div>
-                    <h1>Django Views - 網頁的後台邏輯處理</h1>
-                    <h2 class="subheading">網頁的後台邏輯處理</h2>
+                    <h1>Django Template - 網頁前端設計</h1>
+                    <h2 class="subheading">網頁前端設計</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Sunday, January 24, 2021
+                        Monday, February 1, 2021
                         
                         
                         
@@ -178,147 +178,133 @@
                 post-container">
 
                 
-                <p>Views所做的事情：</p>
+                <p>Template所做的事情：動態生成 Html Django Template Language (DTL)</p>
 <ul>
-<li>接收用戶請求
+<li>動態生成 Html Django Template Language (DTL)
 <ul>
-<li>決定請求方法 GET, POST&hellip;.</li>
-<li>取得用戶請求內容</li>
+<li>Variable</li>
+<li>Tags</li>
+<li>Filter</li>
 </ul>
 </li>
-<li>資料前處理
+<li>回應網頁 (Template Engines)
 <ul>
-<li>取得資料</li>
+<li>設定Dir （可以設定多個不同路徑）</li>
+<li>取得與顯示Template</li>
 </ul>
 </li>
-<li>回應結果
-<ul>
-<li>回應一個網頁</li>
-<li>回應一個 HTTP CODES</li>
-<li>回應 JSON</li>
-<li>回應重新導向</li>
+<li>Static Files分門別類收納起來</li>
 </ul>
-</li>
-</ul>
-<p>VIEWS裝飾子：</p>
-<p>範例：使用只有登入後才可以執行dispatch。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">class</span> <span style="color:#2b91af">ProtectedView</span>(TemplateView):
- 		template_name = <span style="color:#a31515">&#39;secret.html&#39;</span>
-    
-    @method_decorator(login_required)
-    <span style="color:#00f">def</span> dispatch(self, *args, **kwargw):
-      <span style="color:#00f">return</span> super().dispatch(*args, **kwargw)
-</code></pre></div><p>@method_decorator(login_required) - 用戶要登入才可以使用</p>
-<p>@never_cache(view_func) - 可以將頁面關閉cache</p>
-<p>@require_http_methods([&ldquo;GET&rdquo;, &ldquo;POST&rdquo;])  - 可規定只能收到哪種需求</p>
 <hr>
-<h2 id="建立專案">建立專案</h2>
-<pre><code>$ django-admin startproject mysite
-</code></pre><p>目前專案結構</p>
-<pre><code>mysite/
-    manage.py
-    mysite/
-        __init__.py
-        settings.py
-        urls.py
-        asgi.py
-        wsgi.py
-</code></pre><p>Run server</p>
-<pre><code>$ python manage.py runserver
-or
-$ python manage.py runserver 8080
-or
-$ python manage.py runserver 0:8000
-</code></pre><h2 id="建立app">建立APP</h2>
-<pre><code>$ python manage.py startapp polls
-</code></pre><p>目前專案結構，這專案中有init.py檔案，所以在django中，專案是可當作模組的概念，可將整包移植到其他專案中應用。</p>
-<pre><code>mysite/
-    manage.py
-    mysite/
-        __init__.py
-        settings.py
-        urls.py
-        asgi.py
-        wsgi.py
-    polls/
-    __init__.py
-    admin.py
-    apps.py
-    migrations/
-        __init__.py
-    models.py
-    tests.py
-    views.py
-</code></pre><p>將polls App放入專案中</p>
-<p>編輯 polls/_<em>init</em>_.py</p>
-<pre><code>default_app_config = 'polls.apps.PollsConfig'
-</code></pre><p>修改 mysite/settings.py</p>
-<pre><code>INSTALLED_APPS = [
-    'polls',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-]
-</code></pre><p><a href="https://docs.djangoproject.com/en/3.1/ref/applications/">Django 文件 - Applications</a></p>
-<p>建立 polls/templates/polls/index.html</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#00f">&lt;!DOCTYPE html&gt;</span>
-&lt;html lang=<span style="color:#a31515">&#34;en&#34;</span>&gt;
-&lt;head&gt;
-    &lt;meta charset=<span style="color:#a31515">&#34;UTF-8&#34;</span>&gt;
-    &lt;title&gt;first Django app&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;p&gt;Hello, world. You&#39;re at the polls index.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div><p>修改 polls/views.py</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.shortcuts <span style="color:#00f">import</span> render
+<h2 id="產生資料">產生資料</h2>
+<p>修改 polls/view.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.http <span style="color:#00f">import</span> HttpResponse
+<span style="color:#00f">from</span> django.template <span style="color:#00f">import</span> loader
+
+<span style="color:#00f">from</span> .models <span style="color:#00f">import</span> Question
 
 
 <span style="color:#00f">def</span> index(request):
-    <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;polls/index.html&#39;</span>)
-</code></pre></div><p>建立 polls/urls.py</p>
+    <span style="color:#008000">## 寫法ㄧ</span>
+    <span style="color:#008000"># latest_question_list = Question.objects.order_by(&#39;-pub_date&#39;)[:5]</span>
+    <span style="color:#008000"># template = loader.get_template(&#39;polls/index.html&#39;)</span>
+    <span style="color:#008000"># context = {</span>
+    <span style="color:#008000">#     &#39;latest_question_list&#39;: latest_question_list,</span>
+    <span style="color:#008000"># }</span>
+    <span style="color:#008000"># return HttpResponse(template.render(context, request))</span>
+    
+    <span style="color:#008000">## 寫法二</span>
+    latest_question_list = Question.objects.order_by(<span style="color:#a31515">&#39;-pub_date&#39;</span>)[:5]
+    context = {<span style="color:#a31515">&#39;latest_question_list&#39;</span>: latest_question_list}
+    <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;polls/index.html&#39;</span>, context)
+  
+<span style="color:#00f">def</span> detail(request, question_id):
+    <span style="color:#00f">return</span> HttpResponse(<span style="color:#a31515">&#34;You&#39;re looking at question </span><span style="color:#a31515">%s</span><span style="color:#a31515">.&#34;</span> % question_id)
+
+<span style="color:#00f">def</span> results(request, question_id):
+    response = <span style="color:#a31515">&#34;You&#39;re looking at the results of question </span><span style="color:#a31515">%s</span><span style="color:#a31515">.&#34;</span>
+    <span style="color:#00f">return</span> HttpResponse(response % question_id)
+
+<span style="color:#00f">def</span> vote(request, question_id):
+    <span style="color:#00f">return</span> HttpResponse(<span style="color:#a31515">&#34;You&#39;re voting on question </span><span style="color:#a31515">%s</span><span style="color:#a31515">.&#34;</span> % question_id)
+</code></pre></div><p>修改 polls/urls.py</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> path
 
 <span style="color:#00f">from</span> . <span style="color:#00f">import</span> views
 
 urlpatterns = [
+    <span style="color:#008000"># ex: /polls/</span>
     path(<span style="color:#a31515">&#39;&#39;</span>, views.index, name=<span style="color:#a31515">&#39;index&#39;</span>),
+    <span style="color:#008000"># ex: /polls/5/</span>
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/&#39;</span>, views.detail, name=<span style="color:#a31515">&#39;detail&#39;</span>),
+    <span style="color:#008000"># ex: /polls/5/results/</span>
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/results/&#39;</span>, views.results, name=<span style="color:#a31515">&#39;results&#39;</span>),
+    <span style="color:#008000"># ex: /polls/5/vote/</span>
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/vote/&#39;</span>, views.vote, name=<span style="color:#a31515">&#39;vote&#39;</span>),
 ]
-</code></pre></div><p>修改 mysite/urls.py</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.contrib <span style="color:#00f">import</span> admin
-<span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> include, path
+</code></pre></div><p>修改 polls/templates/polls/index.html</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">{% if latest_question_list %}
+    &lt;ul&gt;
+    {% for question in latest_question_list %}
+        &lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;/polls/{{ question.id }}/&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+{% else %}
+    &lt;p&gt;No polls are available.&lt;/p&gt;
+{% endif %}
 
+</code></pre></div><hr>
+<h2 id="加入404錯誤">加入404錯誤</h2>
+<p>修改 polls/view.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">
+<span style="color:#00f">from</span> django.shortcuts <span style="color:#00f">import</span> get_object_or_404, render
+
+<span style="color:#00f">from</span> .models <span style="color:#00f">import</span> Question
+<span style="color:#008000"># ...</span>
+<span style="color:#00f">def</span> detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;polls/detail.html&#39;</span>, {<span style="color:#a31515">&#39;question&#39;</span>: question})
+</code></pre></div><p>加入 polls/templates/polls/detail.html</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
+&lt;ul&gt;
+{% for choice in question.choice_set.all %}
+    &lt;li&gt;{{ choice.choice_text }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+</code></pre></div><hr>
+<h2 id="刪除範本中的硬性編碼網址">刪除範本中的硬性編碼網址</h2>
+<p>原本 polls/templates/polls/index.html 中的連結</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;/polls/{{ question.id }}/&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
+
+</code></pre></div><p>修改 polls/templates/polls/index.html 中的連結</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;{% url &#39;detail&#39; question.id %}&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
+
+</code></pre></div><p>此工作連結定義於<strong>polls.urls</strong>中</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">...
+<span style="color:#008000"># the &#39;name&#39; value as called by the {% url %} template tag</span>
+path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/&#39;</span>, views.detail, name=<span style="color:#a31515">&#39;detail&#39;</span>),
+...
+</code></pre></div><hr>
+<h2 id="namespacing-url-names">Namespacing URL names</h2>
+<p>在一個Django專案中，可能會有多個app專案，這時會需要加入namespaces在URLconf中去辨別。</p>
+<p>namespace : polls/urls.py.app_name</p>
+<p>修改 polls/urls.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> path
+
+<span style="color:#00f">from</span> . <span style="color:#00f">import</span> views
+
+app_name = <span style="color:#a31515">&#39;polls&#39;</span>
 urlpatterns = [
-    path(<span style="color:#a31515">&#39;polls/&#39;</span>, include(<span style="color:#a31515">&#39;polls.urls&#39;</span>)),
-    path(<span style="color:#a31515">&#39;admin/&#39;</span>, admin.site.urls),
+    path(<span style="color:#a31515">&#39;&#39;</span>, views.index, name=<span style="color:#a31515">&#39;index&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/&#39;</span>, views.detail, name=<span style="color:#a31515">&#39;detail&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/results/&#39;</span>, views.results, name=<span style="color:#a31515">&#39;results&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/vote/&#39;</span>, views.vote, name=<span style="color:#a31515">&#39;vote&#39;</span>),
 ]
-</code></pre></div><p>Run server</p>
-<pre><code>$ python manage.py runserver
-</code></pre><p>開啟 http://localhost:8000/polls/ 網頁，看看有沒有顯示Hello, world. You&rsquo;re at the polls index.</p>
-<hr>
-<p>django的幾種回傳方式</p>
-<p>回傳Http</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.http <span style="color:#00f">import</span> HttpResponse
-
-
-<span style="color:#00f">def</span> index(request):
-    <span style="color:#00f">return</span> HttpResponse(<span style="color:#a31515">&#34;Hello, world. You&#39;re at the polls index.&#34;</span>)
-</code></pre></div><p>回傳Json</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.http <span style="color:#00f">import</span> JsonResponse
-
-
-<span style="color:#00f">def</span> index(request):
-    <span style="color:#00f">return</span> HttpResponse({<span style="color:#a31515">&#34;Name&#34;</span>:<span style="color:#a31515">&#34;Larry&#34;</span>, <span style="color:#a31515">&#34;email&#34;</span>:<span style="color:#a31515">&#34;aaa＠gmail.com&#34;</span>})
-</code></pre></div><p>回傳html檔案內容</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.shortcuts <span style="color:#00f">import</span> render
-
-
-<span style="color:#00f">def</span> index(request):
-    <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;index.html&#39;</span>)
+</code></pre></div><p>將 polls/templates/polls/index.html 中的連結加上namespace的檢視</p>
+<p>原本</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;{</span><span style="color:#a31515">% u</span><span style="color:#a31515">rl &#39;detail&#39; question.id %}&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
+</code></pre></div><p>修改後</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;{</span><span style="color:#a31515">% u</span><span style="color:#a31515">rl &#39;polls:detail&#39; question.id %}&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
 </code></pre></div>
 
                 
@@ -327,15 +313,10 @@ urlpatterns = [
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2021/1/22/Generator" data-toggle="tooltip" data-placement="top" title="Generator">&larr;
+                        <a href="/2021/1/25/DjangoModels" data-toggle="tooltip" data-placement="top" title="Django Models - 網頁與資料庫連結">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2021/1/25/DjangoModels" data-toggle="tooltip" data-placement="top" title="Django Models - 網頁與資料庫連結">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 

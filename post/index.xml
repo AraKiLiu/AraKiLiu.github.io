@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 工程師的呢喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-th</language>
-    <lastBuildDate>Mon, 25 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Django Template - 網頁前端設計</title>
+      <link>https://arakiliu.github.io/2021/2/1/DjangoTemplate/</link>
+      <pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/2/1/DjangoTemplate/</guid>
+      <description>Template所做的事情：動態生成 Html Django Template Language (DTL) 動態生成 Html Django Template Language (DTL) Variable Tags Filter 回應網頁 (Template Engines) 設定Dir （可以設定多個不同路徑） 取得與顯示Templat</description>
+    </item>
+    
     <item>
       <title>Django Models - 網頁與資料庫連結</title>
       <link>https://arakiliu.github.io/2021/1/25/DjangoModels/</link>
