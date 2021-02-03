@@ -305,6 +305,101 @@ urlpatterns = [
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;{</span><span style="color:#a31515">% u</span><span style="color:#a31515">rl &#39;detail&#39; question.id %}&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
 </code></pre></div><p>修改後</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&lt;li&gt;&lt;a href=<span style="color:#a31515">&#34;{</span><span style="color:#a31515">% u</span><span style="color:#a31515">rl &#39;polls:detail&#39; question.id %}&#34;</span>&gt;{{ question.question_text }}&lt;/a&gt;&lt;/li&gt;
+</code></pre></div><p>修改 polls/templates/polls/detail.html</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
+
+{% <span style="color:#00f">if</span> error_message %}&lt;p&gt;&lt;strong&gt;{{ error_message }}&lt;/strong&gt;&lt;/p&gt;{% endif %}
+
+&lt;form action=<span style="color:#a31515">&#34;{</span><span style="color:#a31515">% u</span><span style="color:#a31515">rl &#39;polls:vote&#39; question.id %}&#34;</span> method=<span style="color:#a31515">&#34;post&#34;</span>&gt;
+{% csrf_token %}
+{% <span style="color:#00f">for</span> choice <span style="color:#00f">in</span> question.choice_set.all %}
+    &lt;input type=<span style="color:#a31515">&#34;radio&#34;</span> name=<span style="color:#a31515">&#34;choice&#34;</span> id=<span style="color:#a31515">&#34;choice{{ forloop.counter }}&#34;</span> value=<span style="color:#a31515">&#34;{{ choice.id }}&#34;</span>&gt;
+    &lt;label <span style="color:#00f">for</span>=<span style="color:#a31515">&#34;choice{{ forloop.counter }}&#34;</span>&gt;{{ choice.choice_text }}&lt;/label&gt;&lt;br&gt;
+{% endfor %}
+&lt;input type=<span style="color:#a31515">&#34;submit&#34;</span> value=<span style="color:#a31515">&#34;Vote&#34;</span>&gt;
+&lt;/form&gt;
+</code></pre></div><p>修改 polls/views.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.http <span style="color:#00f">import</span> HttpResponse, HttpResponseRedirect
+<span style="color:#00f">from</span> django.shortcuts <span style="color:#00f">import</span> get_object_or_404, render
+<span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> reverse
+
+<span style="color:#00f">from</span> .models <span style="color:#00f">import</span> Choice, Question
+<span style="color:#008000"># ...</span>
+<span style="color:#00f">def</span> results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;polls/results.html&#39;</span>, {<span style="color:#a31515">&#39;question&#39;</span>: question})
+  
+<span style="color:#00f">def</span> vote(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    <span style="color:#00f">try</span>:
+        selected_choice = question.choice_set.get(pk=request.POST[<span style="color:#a31515">&#39;choice&#39;</span>])
+    <span style="color:#00f">except</span> (KeyError, Choice.DoesNotExist):
+        <span style="color:#008000"># Redisplay the question voting form.</span>
+        <span style="color:#00f">return</span> render(request, <span style="color:#a31515">&#39;polls/detail.html&#39;</span>, {
+            <span style="color:#a31515">&#39;question&#39;</span>: question,
+            <span style="color:#a31515">&#39;error_message&#39;</span>: <span style="color:#a31515">&#34;You didn&#39;t select a choice.&#34;</span>,
+        })
+    <span style="color:#00f">else</span>:
+        selected_choice.votes += 1
+        selected_choice.save()
+        <span style="color:#008000"># Always return an HttpResponseRedirect after successfully dealing</span>
+        <span style="color:#008000"># with POST data. This prevents data from being posted twice if a</span>
+        <span style="color:#008000"># user hits the Back button.</span>
+        <span style="color:#00f">return</span> HttpResponseRedirect(reverse(<span style="color:#a31515">&#39;polls:results&#39;</span>, args=(question.id,)))
+</code></pre></div><p>新增 polls/templates/polls/results.html</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;h1&gt;{{ question.question_text }}&lt;/h1&gt;
+
+&lt;ul&gt;
+{% for choice in question.choice_set.all %}
+    &lt;li&gt;{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}&lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;
+
+&lt;a href=<span style="color:#a31515">&#34;{% url &#39;polls:detail&#39; question.id %}&#34;</span>&gt;Vote again?&lt;/a&gt;
+</code></pre></div><hr>
+<h2 id="改用-generic-views">改用 generic views</h2>
+<p>修改 polls/urls.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> path
+
+<span style="color:#00f">from</span> . <span style="color:#00f">import</span> views
+
+app_name = <span style="color:#a31515">&#39;polls&#39;</span>
+urlpatterns = [
+    path(<span style="color:#a31515">&#39;&#39;</span>, views.IndexView.as_view(), name=<span style="color:#a31515">&#39;index&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:pk&gt;/&#39;</span>, views.DetailView.as_view(), name=<span style="color:#a31515">&#39;detail&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:pk&gt;/results/&#39;</span>, views.ResultsView.as_view(), name=<span style="color:#a31515">&#39;results&#39;</span>),
+    path(<span style="color:#a31515">&#39;&lt;int:question_id&gt;/vote/&#39;</span>, views.vote, name=<span style="color:#a31515">&#39;vote&#39;</span>),
+]
+</code></pre></div><p>修改 polls/views.py</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#00f">from</span> django.http <span style="color:#00f">import</span> HttpResponseRedirect
+<span style="color:#00f">from</span> django.shortcuts <span style="color:#00f">import</span> get_object_or_404, render
+<span style="color:#00f">from</span> django.urls <span style="color:#00f">import</span> reverse
+<span style="color:#00f">from</span> django.views <span style="color:#00f">import</span> generic
+
+<span style="color:#00f">from</span> .models <span style="color:#00f">import</span> Choice, Question
+
+
+<span style="color:#00f">class</span> <span style="color:#2b91af">IndexView</span>(generic.ListView):
+    template_name = <span style="color:#a31515">&#39;polls/index.html&#39;</span>
+    context_object_name = <span style="color:#a31515">&#39;latest_question_list&#39;</span>
+
+    <span style="color:#00f">def</span> get_queryset(self):
+        <span style="color:#a31515">&#34;&#34;&#34;Return the last five published questions.&#34;&#34;&#34;</span>
+        <span style="color:#00f">return</span> Question.objects.order_by(<span style="color:#a31515">&#39;-pub_date&#39;</span>)[:5]
+
+
+<span style="color:#00f">class</span> <span style="color:#2b91af">DetailView</span>(generic.DetailView):
+    model = Question
+    template_name = <span style="color:#a31515">&#39;polls/detail.html&#39;</span>
+
+
+<span style="color:#00f">class</span> <span style="color:#2b91af">ResultsView</span>(generic.DetailView):
+    model = Question
+    template_name = <span style="color:#a31515">&#39;polls/results.html&#39;</span>
+
+
+<span style="color:#00f">def</span> vote(request, question_id):
+    ... <span style="color:#008000"># same as above, no changes needed.</span>
 </code></pre></div>
 
                 
