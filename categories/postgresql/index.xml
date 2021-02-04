@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PostgreSQL on 工程師的呢喃</title>
+    <link>https://arakiliu.github.io/categories/postgresql/</link>
+    <description>Recent content in PostgreSQL on 工程師的呢喃</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-th</language>
+    <lastBuildDate>Thu, 04 Feb 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://arakiliu.github.io/categories/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Northwind Database Table - 北風資料庫表格名稱</title>
+      <link>https://arakiliu.github.io/2021/2/4/NorthwindDatabaseTable/</link>
+      <pubDate>Thu, 04 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://arakiliu.github.io/2021/2/4/NorthwindDatabaseTable/</guid>
+      <description>Categories : 種類表 相應欄位 : CategoryID : 型別ID CategoryName : 型別名 Description : 型別說明 Picture : 產品樣本 CustomerCustomerDemo : 客戶型別表1 相應欄位: CustomerID : 客戶ID CustomerTypeID : 客戶型別ID CustomerDemographics : 客戶型別表2 相應</description>
+    </item>
+    
+  </channel>
+</rss>

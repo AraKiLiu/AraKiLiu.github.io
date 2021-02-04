@@ -7,9 +7,9 @@
 
     
 
-    <title>Namespace</title>
+    <title>Northwind Database Table - 北風資料庫表格名稱</title>
 
-    <link rel="canonical" href="/2020/12/11/Namespace/">
+    <link rel="canonical" href="/2021/2/4/NorthwindDatabaseTable">
 
     <link rel="stylesheet" href="/css/timeline.css"/>
 
@@ -140,20 +140,20 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/python" title="Python">
-                            Python
+                        <a class="tag" href="/tags/postgresql" title="PostgreSQL">
+                            PostgreSQL
                         </a>
                         
                     </div>
-                    <h1>Namespace</h1>
-                    <h2 class="subheading">命名空間Namespace</h2>
+                    <h1>Northwind Database Table - 北風資料庫表格名稱</h1>
+                    <h2 class="subheading">北風資料庫表格名稱</h2>
                     <span class="meta">
                         Posted by 
                         
                             劉啟仲
                          
                         on 
-                        Friday, December 11, 2020
+                        Thursday, February 4, 2021
                         
                         
                         
@@ -178,37 +178,138 @@
                 post-container">
 
                 
-                <p>Python中的命名空間是一個字典 (dictionary） ，它的key就是變數名稱，它的值就是那些變數的值。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">x = 2
-<span style="color:#00f">def</span> g():
- x = 4
-</code></pre></div><p>Python中有很多命名空間：</p>
-<ol>
+                <ol>
 <li>
-<p>Built-in Namespace: 當直譯器啟動後就會產生，任何模塊都可以訪問他，存放著基本的函數，例如:print。</p>
+<p><strong>Categories : 種類表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>CategoryID : 型別ID</p>
+<p>CategoryName : 型別名</p>
+<p>Description : 型別說明</p>
+<p>Picture : 產品樣本</p>
 </li>
 <li>
-<p>Global Namespace: 全域命名空間，命名空間記錄了模塊中的變量</p>
-<p>在上方例子模塊中就記錄了</p>
-<p>{ &lsquo;x&rsquo;:2, &lsquo;g&rsquo;: function object }</p>
+<p><strong>CustomerCustomerDemo : 客戶型別表1</strong></p>
+<p><strong>相應欄位:</strong></p>
+<p>CustomerID : 客戶ID</p>
+<p>CustomerTypeID : 客戶型別ID</p>
 </li>
 <li>
-<p>Function Namespace: 區域命名空間，紀錄了函數的變量。</p>
-<p>在上方例子函式中就記錄了</p>
-<p>{ &lsquo;x&rsquo;:4 }</p>
+<p><strong>CustomerDemographics : 客戶型別表2</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>CustomerTypeID : 客戶型別ID</p>
+<p>CustomerDesc : 客戶描述</p>
+</li>
+<li>
+<p><strong>Customers : 客戶表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>CustomerID : 客戶ID</p>
+<p>CompanyName : 所在公司名稱</p>
+<p>ContactName : 客戶姓名</p>
+<p>ContactTitle : 客戶頭銜</p>
+<p>Address : 聯絡地址</p>
+<p>City : 所在城市</p>
+<p>Region : 所在地區</p>
+<p>PostalCode : 郵編</p>
+<p>Country : 國家</p>
+<p>Phone : 電話</p>
+<p>Fax : 傳真</p>
+</li>
+<li>
+<p><strong>Employees : 員工表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>EmployeeID : 員工代號</p>
+<p>LastName + FirstName : 員工姓名</p>
+<p>Title : 頭銜</p>
+<p>TitleOfCourtesy : 尊稱</p>
+<p>BirthDate : 出生日期</p>
+<p>HireDate : 僱用日期</p>
+<p>Address : 家庭地址</p>
+<p>City : 所在城市</p>
+<p>Region : 所在地區</p>
+<p>PostalCode : 郵編</p>
+<p>Country : 國家用</p>
+<p>HomePhone : 宅電</p>
+<p>Extension : 分機</p>
+<p>Photo : 手機</p>
+<p>notes : 照片</p>
+<p>ReportsTo : 上級</p>
+</li>
+<li>
+<p><strong>EmployeeTerritories : 員工部門表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>EmployeeID : 員工編號</p>
+<p>TerritoryID : 部門代號</p>
+</li>
+<li>
+<p><strong>Order Details : 訂單明細表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>OrderID : 訂單編號</p>
+<p>ProductID : 產品編號</p>
+<p>UnitPrice : 單價</p>
+<p>Quantity : 訂購數量</p>
+<p>Discount : 折扣</p>
+</li>
+<li>
+<p><strong>Orders : 訂單表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>OrderID : 訂單編號</p>
+<p>CustomerID : 客戶編號</p>
+<p>EmployeeID : 員工編號</p>
+<p>OrderDate : 訂購日期</p>
+<p>RequiredDate : 預計到達日期</p>
+<p>ShippedDate : 發貨日期</p>
+<p>ShipVia : 運貨商</p>
+<p>Freight : 運費</p>
+<p>ShipName : 貨主姓名</p>
+<p>ShipAddress : 貨主地址</p>
+<p>ShipCity : 貨主所在城市</p>
+<p>ShipRegion : 貨主所在地區</p>
+<p>ShipPostalCode : 貨主郵編</p>
+<p>ShipCountry : 貨主所在國家</p>
+</li>
+<li>
+<p><strong>Products : 產品表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>ProductID : 產品ID</p>
+<p>ProductName : 產品名稱</p>
+<p>SupplierID : 供應商ID</p>
+<p>CategoryID : 型別ID</p>
+<p>QuantityPerUnit : 數量</p>
+<p>UnitPrice : 單價</p>
+<p>UnitsInStock : 庫存數量</p>
+<p>UnitsOnOrder : 訂購量</p>
+<p>ReorderLevel : 再次訂購量</p>
+<p>Discontinued : 中止</p>
+</li>
+<li>
+<p><strong>Region : 地區表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>RegionID : 地區ID</p>
+<p>RegionDescription : 地區描述</p>
+</li>
+<li>
+<p><strong>Shippers : 運貨商</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>ShipperID : 運貨商ID</p>
+<p>CompanyName : 公司名稱</p>
+<p>Phone : 聯絡電話</p>
+</li>
+<li>
+<p><strong>Suppliers : 供應商表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>ShipperID : 供應商ID</p>
+<p>CompanyName : 供應商姓名</p>
+<p>Phone聯絡電話</p>
+</li>
+<li>
+<p><strong>Territories : 地域表</strong></p>
+<p><strong>相應欄位 :</strong></p>
+<p>TerritoryID : 地域編號</p>
+<p>TerritoryDescription : 地域描述</p>
+<p>RegionID : 地區編號</p>
 </li>
 </ol>
-<p>
-  <img src="https://cdn.programiz.com/sites/tutorial2program/files/nested-namespaces-python.jpg" alt="">
-
-</p>
-<p>Python LEGB:</p>
-<ul>
-<li>L: local</li>
-<li>E: enclosed</li>
-<li>G: global</li>
-<li>B: built-in</li>
-</ul>
+<p>[Northwind Extended](<a href="https://code.google.com/archive/p/northwindextended/downloads">Google Code Archive - Long-term storage for Google Code Project Hosting.</a>)</p>
 
 
                 
@@ -217,15 +318,10 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2020/12/10/pass-by-reference/" data-toggle="tooltip" data-placement="top" title="參數的傳遞模式">&larr;
+                        <a href="/2021/2/1/DjangoTemplate" data-toggle="tooltip" data-placement="top" title="Django Template - 網頁前端設計">&larr;
                             Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/2020/12/14/Scope/" data-toggle="tooltip" data-placement="top" title="Scope">Next
-                            Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
